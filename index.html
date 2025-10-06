@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - 4MGI Strategy AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+  <div class="login-container">
+    <!-- Background Pattern -->
+    <div class="bg-pattern">
+      <div class="pattern-circle pattern-circle-1"></div>
+      <div class="pattern-circle pattern-circle-2"></div>
+      <div class="pattern-circle pattern-circle-3"></div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+      <!-- Logo & Brand -->
+      <div class="login-header">
+        <div class="logo-wrapper">
+          <div class="logo-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h1 class="logo-text">4MGI</h1>
+        </div>
+        <p class="tagline">Strategy AI Platform</p>
+      </div>
+
+      <!-- Main Content -->
+      <div class="login-content">
+        <h2 class="form-title">Welcome Back</h2>
+        <p class="form-subtitle">Choose your preferred sign in method</p>
+
+        <!-- Social Login Options (PRIMARY) -->
+        <div class="social-login-primary">
+          <button type="button" class="btn-social-large btn-google" id="googleLogin">
+            <i class="fab fa-google"></i>
+            <span>Continue with Google</span>
+          </button>
+
+          <button type="button" class="btn-social-large btn-facebook" id="facebookLogin">
+            <i class="fab fa-facebook-f"></i>
+            <span>Continue with Facebook</span>
+          </button>
+
+          <button type="button" class="btn-social-large btn-apple" id="appleLogin">
+            <i class="fab fa-apple"></i>
+            <span>Continue with Apple</span>
+          </button>
+
+          <button type="button" class="btn-social-large btn-microsoft" id="microsoftLogin">
+            <i class="fab fa-microsoft"></i>
+            <span>Continue with Microsoft</span>
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider-with-text">
+          <span>Or continue with email</span>
+        </div>
+
+        <!-- Email Login Option (SECONDARY) -->
+        <button type="button" class="btn-email-login" id="emailLoginBtn">
+          <i class="fas fa-envelope"></i>
+          <span>Sign in with Email</span>
+        </button>
+
+        <!-- Sign Up Link -->
+        <p class="signup-link">
+          Don't have an account?
+          <a href="#" id="signupLink">Create free account</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="login-footer">
+      <p>&copy; 2024 4MGI Strategy AI. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <span>•</span>
+        <a href="#">Terms of Service</a>
+        <span>•</span>
+        <a href="#">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Email Login Modal -->
+  <div class="modal-overlay" id="emailLoginModal">
+    <div class="modal-content">
+      <button class="modal-close" id="emailModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="modal-header">
+        <i class="fas fa-envelope modal-icon"></i>
+        <h3>Sign in with Email</h3>
+        <p>Enter your credentials to continue</p>
+      </div>
+
+      <form class="modal-form" id="emailLoginForm">
+        <!-- Email Input -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+          </div>
+          <span class="error-message" id="emailError"></span>
+        </div>
+
+        <!-- Password Input -->
+        <div class="form-group">
+          <label for="password" class="form-label">
+            Password
+            <a href="#" class="forgot-link" id="forgotPasswordLink">Forgot?</a>
+          </label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required>
+            <button type="button" class="toggle-password" id="togglePassword">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <span class="error-message" id="passwordError"></span>
+        </div>
+
+        <!-- Remember Me -->
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember" name="remember">
+            <span class="checkbox-custom"></span>
+            <span>Keep me signed in</span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-block">
+          <span class="btn-text">Sign In</span>
+          <i class="fas fa-arrow-right btn-icon"></i>
+        </button>
+
+        <!-- Back to Social -->
+        <p class="back-to-social">
+          <a href="#" id="backToSocial">
+            <i class="fas fa-chevron-left"></i> Back to other options
+          </a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal-overlay" id="forgotModal">
+    <div class="modal-content">
+      <button class="modal-close" id="forgotModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="modal-header">
+        <i class="fas fa-key modal-icon"></i>
+        <h3>Reset Password</h3>
+        <p>Enter your email to receive reset instructions</p>
+      </div>
+
+      <form class="modal-form" id="forgotForm">
+        <div class="form-group">
+          <label for="resetEmail" class="form-label">Email Address</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="resetEmail" name="resetEmail" class="form-input" placeholder="john@example.com"
+              required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          Send Reset Link
+        </button>
+
+        <p class="back-to-login">
+          Remember your password?
+          <a href="#" id="backToEmailLogin">Back to login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="modal-content modal-signup">
+      <button class="modal-close" id="signupModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="modal-header">
+        <i class="fas fa-user-plus modal-icon"></i>
+        <h3>Create Account</h3>
+        <p>Start your 14-day free trial</p>
+      </div>
+
+      <!-- Social Signup Options -->
+      <div class="social-signup">
+        <button type="button" class="btn-social-signup btn-google-signup">
+          <i class="fab fa-google"></i>
+          <span>Sign up with Google</span>
+        </button>
+        <button type="button" class="btn-social-signup btn-facebook-signup">
+          <i class="fab fa-facebook-f"></i>
+          <span>Sign up with Facebook</span>
+        </button>
+      </div>
+
+      <div class="divider-small">
+        <span>or</span>
+      </div>
+
+      <form class="modal-form" id="signupForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Doe" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signupEmail" class="form-label">Email Address</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="signupEmail" name="signupEmail" class="form-input" placeholder="john@example.com"
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signupPassword" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="signupPassword" name="signupPassword" class="form-input"
+              placeholder="Min. 8 characters" required>
+          </div>
+          <div class="password-strength">
+            <div class="strength-bar">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <span class="strength-text" id="strengthText">Password strength</span>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="terms" name="terms" required>
+            <span class="checkbox-custom"></span>
+            <span>I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          Create Account
+        </button>
+
+        <p class="back-to-login">
+          Already have an account?
+          <a href="#" id="backToMain">Sign in</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script src="./login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4MGI Strategy AI Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">4MGI</div>
+      <nav class="main-nav">
+        <a href="home.html" class="nav-item active"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a href="brain-dump.html" class="nav-item"><i class="fas fa-brain"></i><span>Brain Dump</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Gap Annihilator</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-tasks"></i><span>Tasks & Projects</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-pen-nib"></i><span>Branding</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-hourglass-half"></i><span>REP Log</span></a>
+      </nav>
+      <div class="user-profile">
+        <i class="fas fa-user-circle"></i>
+        <div class="user-info">
+          <p>John Doe</p>
+          <small>Real Estate Investor</small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content-area">
+      <header class="top-header">
+        <h1>Dashboard</h1>
+        <div class="header-actions">
+          <button class="icon-btn"><i class="fas fa-search"></i></button>
+          <button class="icon-btn"><i class="fas fa-bell notification-dot"></i></button>
+          <div class="user-avatar"><i class="fas fa-user"></i></div>
+        </div>
+      </header>
+
+      <section class="dashboard-grid">
+        <div class="card mit-card">
+          <h2 class="card-title">
+            <span class="title-text">
+              <span id="mitTitle">DAILY</span> MITs
+            </span>
+            <div class="title-actions">
+              <div class="period-dropdown">
+                <button class="period-btn" id="periodBtn">
+                  <i class="fas fa-calendar-alt"></i>
+                  <span id="periodText">Daily</span>
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="period-menu" id="periodMenu">
+                  <a href="#" class="period-option active" data-period="daily">
+                    <i class="fas fa-calendar-day"></i>
+                    Daily
+                  </a>
+                  <a href="#" class="period-option" data-period="weekly">
+                    <i class="fas fa-calendar-week"></i>
+                    Weekly
+                  </a>
+                  <a href="#" class="period-option" data-period="monthly">
+                    <i class="fas fa-calendar-alt"></i>
+                    Monthly
+                  </a>
+                </div>
+              </div>
+              <i class="fas fa-check-circle teal"></i>
+            </div>
+          </h2>
+
+          <!-- Daily Tasks (Default) -->
+          <ul class="task-list" id="dailyTasks">
+            <li class="task-item high-priority" data-status="pending" data-task-id="1">
+              <span class="task-text">1. Call Client A about proposal</span>
+              <div class="task-actions">
+                <button class="action-btn swap"><i class="fas fa-exchange-alt"></i><span> Swap</span></button>
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item near-due" data-status="pending" data-task-id="2">
+              <span class="task-text">2. Draft LinkedIn post - Market Trends</span>
+              <div class="task-actions">
+                <button class="action-btn swap"><i class="fas fa-exchange-alt"></i><span> Swap</span></button>
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item" data-status="pending" data-task-id="3">
+              <span class="task-text">3. Review repair permits for Hibiscus property</span>
+              <div class="task-actions">
+                <button class="action-btn swap"><i class="fas fa-exchange-alt"></i><span> Swap</span></button>
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Weekly Tasks (Hidden) -->
+          <ul class="task-list hidden" id="weeklyTasks">
+            <li class="task-item" data-status="pending" data-task-id="w1">
+              <span class="task-text">1. Complete property inspection reports (5 properties)</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item high-priority" data-status="pending" data-task-id="w2">
+              <span class="task-text">2. Prepare investment portfolio review presentation</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item" data-status="pending" data-task-id="w3">
+              <span class="task-text">3. Network with 10 potential investors</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item near-due" data-status="pending" data-task-id="w4">
+              <span class="task-text">4. Submit tax documents to accountant</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item" data-status="pending" data-task-id="w5">
+              <span class="task-text">5. Create content calendar for next month</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Monthly Tasks (Hidden) -->
+          <ul class="task-list hidden" id="monthlyTasks">
+            <li class="task-item high-priority" data-status="pending" data-task-id="m1">
+              <span class="task-text">1. Close 3 new property deals</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item" data-status="pending" data-task-id="m2">
+              <span class="task-text">2. Achieve $50K in passive rental income</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item near-due" data-status="pending" data-task-id="m3">
+              <span class="task-text">3. Complete annual property maintenance schedule</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item" data-status="pending" data-task-id="m4">
+              <span class="task-text">4. Launch new investment course</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+            <li class="task-item" data-status="pending" data-task-id="m5">
+              <span class="task-text">5. Expand portfolio by 20%</span>
+              <div class="task-actions">
+                <button class="action-btn defer"><i class="fas fa-clock"></i><span> Defer</span></button>
+                <button class="action-btn done"><i class="fas fa-check"></i><span> Done</span></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="right-panel">
+          <div class="card weekly-plan-card">
+            <h2 class="card-title">
+              <span id="summaryTitle">Weekly Plan Summary</span>
+            </h2>
+            <div id="summaryContent">
+              <p>Total Tasks: <span id="totalTasks">18</span></p>
+              <p>Active Projects: <span id="activeProjects">4</span></p>
+              <p>Upcoming Deadlines: <span id="deadlines">3</span> <span id="deadlineText">(Next 7 days)</span></p>
+            </div>
+            <button class="btn teal-btn">View Full Plan</button>
+          </div>
+
+          <div class="card rep-progress-card">
+            <h2 class="card-title">REP Progress <span id="repGoal">(Goal: 15 hrs)</span></h2>
+            <p class="rep-hours"><span id="repCurrent">8</span> / <span id="repTarget">15</span> hours <span
+                id="repPeriod">this week</span></p>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="repProgressBar" style="width: 53%;"></div>
+            </div>
+            <small id="repMessage">Need 7 more hours by Sunday.</small>
+          </div>
+
+          <div class="card gap-cta-card">
+            <h2 class="card-title">Gap Annihilator</h2>
+            <p>Analyze gaps & create strategic actions.</p>
+            <button class="btn gold-btn">Analyze My Gaps <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="home.html" class="active"><i class="fas fa-home"></i>Home</a>
+    <a href="brain-dump.html"><i class="fas fa-brain"></i>Brain Dump</a>
+    <a href="#"><i class="fas fa-tasks"></i>Tasks</a>
+    <a href="#"><i class="fas fa-pen-nib"></i>Branding</a>
+    <a href="#"><i class="fas fa-user"></i>Profile</a>
+  </nav>
+
+  <!-- Floating Action Button -->
+  <button class="fab" id="fabButton" aria-label="Brain Dump">
+    <i class="fas fa-microphone"></i>
+  </button>
+
+  <!-- Brain Dump Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content" id="modalContent">
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="brain-dump-container">
+        <div class="mic-icon-wrapper">
+          <button class="mic-button" id="micButton">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <div class="pulse-ring"></div>
+        </div>
+
+        <div class="input-container">
+          <textarea class="brain-dump-input" id="brainDumpInput" placeholder="Type or tap mic to start speaking..."
+            rows="4"></textarea>
+        </div>
+
+        <button class="structure-btn" id="structureBtn">
+          <i class="fas fa-robot"></i>
+          Structure with AI
+        </button>
+
+        <div class="voice-indicator" id="voiceIndicator">
+          <span class="recording-dot"></span>
+          <span>Listening...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Task Management Modal -->
+  <div class="task-modal-overlay" id="taskModalOverlay">
+    <div class="task-modal-content">
+      <div class="task-modal-header">
+        <h3 id="taskModalTitle">Create New Task</h3>
+        <button class="task-modal-close" id="taskModalClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="task-modal-body">
+        <form id="taskForm">
+          <div class="form-group">
+            <label for="taskName">Task Name</label>
+            <input type="text" id="taskName" name="taskName" placeholder="Enter task name..." required>
+          </div>
+          
+          <div class="form-group">
+            <label for="taskDescription">Description</label>
+            <textarea id="taskDescription" name="taskDescription" placeholder="Enter task description..." rows="3"></textarea>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="taskPriority">Priority</label>
+              <select id="taskPriority" name="taskPriority">
+                <option value="normal">Normal</option>
+                <option value="high">High Priority</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="taskCategory">Category</label>
+              <select id="taskCategory" name="taskCategory">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="taskDueDate">Due Date (Optional)</label>
+            <input type="date" id="taskDueDate" name="taskDueDate">
+          </div>
+        </form>
+      </div>
+      
+      <div class="task-modal-footer">
+        <button type="button" class="btn-secondary" id="taskCancelBtn">
+          <i class="fas fa-times"></i> Cancel
+        </button>
+        <button type="button" class="btn-primary" id="taskSaveBtn">
+          <i class="fas fa-save"></i> Save Task
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalize Your Experience - 4MGI Strategy AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./onboarding.css">
+</head>
+
+<body>
+  <div class="onboarding-container">
+    <!-- Header -->
+    <header class="onboarding-header">
+      <div class="logo-section">
+        <div class="logo-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h1 class="logo-text">4MGI</h1>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-info">
+          <span>Step <span id="currentStep">1</span> of <span id="totalSteps">7</span></span>
+          <span id="progressPercent">14%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <button class="skip-btn" id="skipBtn">
+        Skip for now
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="onboarding-main">
+      <!-- Welcome Step -->
+      <div class="onboarding-step active" data-step="0">
+        <div class="welcome-container">
+          <div class="welcome-icon">
+            <i class="fas fa-magic"></i>
+          </div>
+          <h2 class="welcome-title">Welcome to 4MGI AI!</h2>
+          <p class="welcome-subtitle">Let's personalize your experience</p>
+
+          <div class="welcome-content">
+            <p>We'll ask you a few questions to customize 4MGI AI specifically for your needs. This helps us:</p>
+
+            <div class="benefit-list">
+              <div class="benefit-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Provide AI-powered recommendations tailored to your industry</span>
+              </div>
+              <div class="benefit-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Create customized workflows that match your work style</span>
+              </div>
+              <div class="benefit-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Deliver smart task prioritization based on your goals</span>
+              </div>
+              <div class="benefit-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Optimize productivity features for your specific needs</span>
+              </div>
+            </div>
+
+            <p class="time-estimate">
+              <i class="fas fa-clock"></i>
+              This will take approximately 3-5 minutes
+            </p>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn btn-primary btn-large" id="startBtn">
+              Let's Get Started
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1: Basic Information -->
+      <div class="onboarding-step" data-step="1">
+        <div class="step-container">
+          <div class="step-header">
+            <div class="step-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h2 class="step-title">Basic Information</h2>
+            <p class="step-description">Help us understand your industry and role</p>
+          </div>
+
+          <div class="step-content">
+            <div class="question-group">
+              <label class="question-label">
+                What industry are you in?
+                <span class="label-hint">(Select all that apply)</span>
+              </label>
+              <div class="checkbox-grid">
+                <label class="checkbox-card">
+                  <input type="checkbox" name="industry" value="real-estate">
+                  <div class="checkbox-card-inner">
+                    <i class="fas fa-home"></i>
+                    <span>Real Estate</span>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" name="industry" value="business">
+                  <div class="checkbox-card-inner">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Business/Startup</span>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" name="industry" value="finance">
+                  <div class="checkbox-card-inner">
+                    <i class="fas fa-chart-line"></i>
+                    <span>VC/Finance</span>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" name="industry" value="construction">
+                  <div class="checkbox-card-inner">
+                    <i class="fas fa-hard-hat"></i>
+                    <span>Construction</span>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" name="industry" value="consulting">
+                  <div class="checkbox-card-inner">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Consulting</span>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" name="industry" value="content">
+                  <div class="checkbox-card-inner">
+                    <i class="fas fa-pen-nib"></i>
+                    <span>Content/Marketing</span>
+                  </div>
+                </label>
+              </div>
+              <div class="other-input-wrapper">
+                <input type="text" class="other-input" placeholder="Other industry (optional)" id="otherIndustry">
+              </div>
+            </div>
+
+            <div class="question-group">
+              <label for="currentRole" class="question-label">What's your current role?</label>
+              <select id="currentRole" class="select-input">
+                <option value="">Select your role...</option>
+                <option value="leader">Team Leader / Manager</option>
+                <option value="investor">Investor</option>
+                <option value="entrepreneur">Entrepreneur / Business Owner</option>
+                <option value="professional">Professional Employee</option>
+                <option value="consultant">Consultant / Advisor</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="question-group">
+              <label for="workStyle" class="question-label">How do you typically work?</label>
+              <select id="workStyle" class="select-input">
+                <option value="">Select work style...</option>
+                <option value="individual">Individual</option>
+                <option value="small-team">Small Team (2-5 people)</option>
+                <option value="large-org">Large Organization (10+ people)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn btn-secondary" id="backStep1">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+            <button class="btn btn-primary" id="nextStep1">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Goals & Priorities -->
+      <div class="onboarding-step" data-step="2">
+        <div class="step-container">
+          <div class="step-header">
+            <div class="step-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h2 class="step-title">Goals & Priorities</h2>
+            <p class="step-description">What do you want to achieve with 4MGI AI?</p>
+          </div>
+
+          <div class="step-content">
+            <div class="question-group">
+              <label class="question-label">
+                What are your top priorities?
+                <span class="label-hint">(Select up to 2)</span>
+              </label>
+              <div class="priority-cards">
+                <label class="priority-card">
+                  <input type="checkbox" name="priorities" value="productivity">
+                  <div class="priority-card-inner">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Increase Productivity</h4>
+                    <p>Better organize and complete tasks</p>
+                  </div>
+                </label>
+                <label class="priority-card">
+                  <input type="checkbox" name="priorities" value="mental-load">
+                  <div class="priority-card-inner">
+                    <i class="fas fa-brain"></i>
+                    <h4>Reduce Mental Load</h4>
+                    <p>Clear your mind and reduce stress</p>
+                  </div>
+                </label>
+                <label class="priority-card">
+                  <input type="checkbox" name="priorities" value="branding">
+                  <div class="priority-card-inner">
+                    <i class="fas fa-star"></i>
+                    <h4>Personal Branding</h4>
+                    <p>Build your professional presence</p>
+                  </div>
+                </label>
+                <label class="priority-card">
+                  <input type="checkbox" name="priorities" value="rep-tracking">
+                  <div class="priority-card-inner">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4>REP Tracking</h4>
+                    <p>Track real estate activities</p>
+                  </div>
+                </label>
+                <label class="priority-card">
+                  <input type="checkbox" name="priorities" value="gap-analysis">
+                  <div class="priority-card-inner">
+                    <i class="fas fa-analytics"></i>
+                    <h4>Gap Analysis</h4>
+                    <p>Identify growth opportunities</p>
+                  </div>
+                </label>
+                <label class="priority-card">
+                  <input type="checkbox" name="priorities" value="strategy">
+                  <div class="priority-card-inner">
+                    <i class="fas fa-chess"></i>
+                    <h4>Strategic Planning</h4>
+                    <p>Create personal strategies</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="question-group">
+              <label class="question-label">
+                Where do you face the most challenges?
+                <span class="label-hint">(Select all that apply)</span>
+              </label>
+              <div class="checkbox-list">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="challenges" value="prioritization">
+                  <span class="checkbox-custom"></span>
+                  <span>Prioritizing and organizing tasks</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="challenges" value="brain-dump">
+                  <span class="checkbox-custom"></span>
+                  <span>Converting thoughts into action plans</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="challenges" value="discipline">
+                  <span class="checkbox-custom"></span>
+                  <span>Maintaining discipline with MITs</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="challenges" value="tracking">
+                  <span class="checkbox-custom"></span>
+                  <span>Tracking work hours and activities</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="challenges" value="content">
+                  <span class="checkbox-custom"></span>
+                  <span>Maintaining content creation habits</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="challenges" value="measurement">
+                  <span class="checkbox-custom"></span>
+                  <span>Measuring progress and growth</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn btn-secondary" id="backStep2">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+            <button class="btn btn-primary" id="nextStep2">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Work Style -->
+      <div class="onboarding-step" data-step="3">
+        <div class="step-container">
+          <div class="step-header">
+            <div class="step-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h2 class="step-title">Work Style & Preferences</h2>
+            <p class="step-description">How would you like AI to work with you?</p>
+          </div>
+
+          <div class="step-content">
+            <div class="question-group">
+              <label for="communicationStyle" class="question-label">
+                How should AI communicate with you?
+              </label>
+              <select id="communicationStyle" class="select-input">
+                <option value="">Select communication style...</option>
+                <option value="professional">🤝 Professional and concise</option>
+                <option value="friendly">💬 Friendly and encouraging</option>
+                <option value="direct">🎯 Direct and action-oriented</option>
+                <option value="analytical">📊 Analytical and detailed</option>
+              </select>
+            </div>
+
+            <div class="question-group">
+              <label for="supportStyle" class="question-label">
+                How do you want to receive support?
+              </label>
+              <select id="supportStyle" class="select-input">
+                <option value="">Select support style...</option>
+                <option value="proactive">AI suggests automatically, I confirm</option>
+                <option value="reactive">I input/speak, AI organizes</option>
+                <option value="mixed">Combination of both</option>
+              </select>
+            </div>
+
+            <div class="question-group">
+              <label for="inputMethod" class="question-label">
+                How do you prefer to work with AI?
+              </label>
+              <select id="inputMethod" class="select-input">
+                <option value="">Select input method...</option>
+                <option value="voice">🎙️ Voice input</option>
+                <option value="text">⌨️ Text input</option>
+                <option value="both">Both voice and text</option>
+              </select>
+            </div>
+
+            <div class="question-group">
+              <label for="viewPreference" class="question-label">
+                How do you like to view your tasks?
+              </label>
+              <select id="viewPreference" class="select-input">
+                <option value="">Select view preference...</option>
+                <option value="list">Priority List</option>
+                <option value="kanban">Kanban Board</option>
+                <option value="calendar">Weekly Calendar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn btn-secondary" id="backStep3">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+            <button class="btn btn-primary" id="nextStep3">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Industry Specific -->
+      <div class="onboarding-step" data-step="4">
+        <div class="step-container">
+          <div class="step-header">
+            <div class="step-icon">
+              <i class="fas fa-cog"></i>
+            </div>
+            <h2 class="step-title">Industry Specific Settings</h2>
+            <p class="step-description">Customize features for your field</p>
+          </div>
+
+          <div class="step-content">
+            <!-- Real Estate Section -->
+            <div class="industry-section" id="realEstateSection" style="display: none;">
+              <h3 class="section-title">
+                <i class="fas fa-home"></i>
+                Real Estate Settings
+              </h3>
+
+              <div class="question-group">
+                <label for="repTracking" class="question-label">
+                  Enable REP activity tracking?
+                </label>
+                <select id="repTracking" class="select-input">
+                  <option value="">Select option...</option>
+                  <option value="yes">Yes, track my REP activities</option>
+                  <option value="no">No, I don't need this</option>
+                </select>
+              </div>
+
+              <div class="question-group">
+                <label for="repInput" class="question-label">
+                  How would you like to log REP activities?
+                </label>
+                <select id="repInput" class="select-input">
+                  <option value="">Select input method...</option>
+                  <option value="auto">Auto-categorize from voice descriptions</option>
+                  <option value="manual">Manual entry with category selection</option>
+                  <option value="both">Both options</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Content Creation Section -->
+            <div class="industry-section" id="contentSection" style="display: none;">
+              <h3 class="section-title">
+                <i class="fas fa-pen-nib"></i>
+                Content & Branding
+              </h3>
+
+              <div class="question-group">
+                <label class="question-label">
+                  Where do you create content?
+                  <span class="label-hint">(Select all that apply)</span>
+                </label>
+                <div class="platform-grid">
+                  <label class="platform-item">
+                    <input type="checkbox" name="platforms" value="linkedin">
+                    <div class="platform-inner">
+                      <i class="fab fa-linkedin"></i>
+                      <span>LinkedIn</span>
+                    </div>
+                  </label>
+                  <label class="platform-item">
+                    <input type="checkbox" name="platforms" value="facebook">
+                    <div class="platform-inner">
+                      <i class="fab fa-facebook"></i>
+                      <span>Facebook</span>
+                    </div>
+                  </label>
+                  <label class="platform-item">
+                    <input type="checkbox" name="platforms" value="blog">
+                    <div class="platform-inner">
+                      <i class="fas fa-blog"></i>
+                      <span>Blog</span>
+                    </div>
+                  </label>
+                  <label class="platform-item">
+                    <input type="checkbox" name="platforms" value="instagram">
+                    <div class="platform-inner">
+                      <i class="fab fa-instagram"></i>
+                      <span>Instagram</span>
+                    </div>
+                  </label>
+                </div>
+                <input type="text" class="other-input" placeholder="Other platforms (optional)" id="otherPlatforms">
+              </div>
+
+              <div class="question-group">
+                <label for="contentType" class="question-label">
+                  What type of content do you need help with?
+                </label>
+                <select id="contentType" class="select-input">
+                  <option value="">Select content type...</option>
+                  <option value="short">Short posts (social media)</option>
+                  <option value="long">Long articles (blogs, newsletters)</option>
+                  <option value="both">Both types</option>
+                </select>
+              </div>
+
+              <div class="question-group">
+                <label for="writingTone" class="question-label">
+                  Your preferred content tone?
+                </label>
+                <select id="writingTone" class="select-input">
+                  <option value="">Select tone...</option>
+                  <option value="inspirational">Inspirational</option>
+                  <option value="analytical">Analytical & Deep</option>
+                  <option value="casual">Casual & Friendly</option>
+                  <option value="professional">Professional & Formal</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Default message if no industry selected -->
+            <div id="noIndustryMessage" class="no-industry-message">
+              <i class="fas fa-info-circle"></i>
+              <p>Industry-specific settings will appear based on your selections from Step 1.</p>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn btn-secondary" id="backStep4">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+            <button class="btn btn-primary" id="nextStep4">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: Growth & Development -->
+      <div class="onboarding-step" data-step="5">
+        <div class="step-container">
+          <div class="step-header">
+            <div class="step-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h2 class="step-title">Growth & Development</h2>
+            <p class="step-description">Track your personal development journey</p>
+          </div>
+
+          <div class="step-content">
+            <div class="question-group">
+              <label for="gapAnalysis" class="question-label">
+                Want AI to help analyze gaps between current state and goals?
+              </label>
+              <select id="gapAnalysis" class="select-input">
+                <option value="">Select option...</option>
+                <option value="manual">Yes, I'll input my current state & goals</option>
+                <option value="guided">Yes, guide me with questions</option>
+                <option value="later">Not now, maybe later</option>
+              </select>
+            </div>
+
+            <div class="question-group">
+              <label for="skillFocus" class="question-label">
+                Which skill do you want to develop most in the next 3 months?
+              </label>
+              <select id="skillFocus" class="select-input">
+                <option value="">Select skill area...</option>
+                <option value="leadership">Leadership & Team Management</option>
+                <option value="communication">Communication & Negotiation</option>
+                <option value="productivity">Personal Productivity</option>
+                <option value="finance">Investment & Finance</option>
+                <option value="branding">Personal Branding</option>
+              </select>
+            </div>
+
+            <div class="question-group">
+              <label for="progressTracking" class="question-label">
+                How should AI track your progress?
+              </label>
+              <select id="progressTracking" class="select-input">
+                <option value="">Select tracking method...</option>
+                <option value="auto">Auto reminders & task creation</option>
+                <option value="manual">I'll update manually</option>
+                <option value="none">No tracking needed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn btn-secondary" id="backStep5">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+            <button class="btn btn-primary" id="nextStep5">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6: Final Preferences -->
+      <div class="onboarding-step" data-step="6">
+        <div class="step-container">
+          <div class="step-header">
+            <div class="step-icon">
+              <i class="fas fa-sliders-h"></i>
+            </div>
+            <h2 class="step-title">Final Preferences</h2>
+            <p class="step-description">Last few settings to optimize your experience</p>
+          </div>
+
+          <div class="step-content">
+            <div class="question-group">
+              <label for="aiLearning" class="question-label">
+                Should AI learn from your writing style?
+              </label>
+              <select id="aiLearning" class="select-input">
+                <option value="">Select preference...</option>
+                <option value="yes">Yes, learn and adapt to my style</option>
+                <option value="no">No, keep AI responses neutral</option>
+              </select>
+            </div>
+
+            <div class="question-group">
+              <label for="dailyReminder" class="question-label">
+                When would you like daily MIT suggestions?
+              </label>
+              <select id="dailyReminder" class="select-input">
+                <option value="">Select time...</option>
+                <option value="morning">Morning (7-9 AM)</option>
+                <option value="noon">Midday (11 AM-1 PM)</option>
+                <option value="evening">Evening (8-10 PM)</option>
+                <option value="none">No daily reminders</option>
+              </select>
+            </div>
+
+            <div class="question-group">
+              <label for="weeklyPlanning" class="question-label">
+                When should AI suggest weekly planning?
+              </label>
+              <select id="weeklyPlanning" class="select-input">
+                <option value="">Select day...</option>
+                <option value="sunday">Sunday Evening</option>
+                <option value="monday">Monday Morning</option>
+                <option value="friday">Friday Afternoon</option>
+                <option value="custom">Other time</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn btn-secondary" id="backStep6">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+            <button class="btn btn-primary" id="nextStep6">
+              Next
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 7: Complete -->
+      <div class="onboarding-step" data-step="7">
+        <div class="complete-container">
+          <div class="complete-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h2 class="complete-title">You're All Set!</h2>
+          <p class="complete-subtitle">Your AI assistant is ready and personalized just for you</p>
+
+          <div class="summary-card">
+            <h3>Your Personalized Setup</h3>
+            <div id="setupSummary" class="setup-summary">
+              <!-- Summary will be populated by JS -->
+            </div>
+          </div>
+
+          <p class="complete-note">
+            <i class="fas fa-info-circle"></i>
+            You can always update these preferences in Settings
+          </p>
+
+          <div class="step-actions">
+            <button class="btn btn-secondary" id="backStep7">
+              <i class="fas fa-chevron-left"></i>
+              Back
+            </button>
+            <button class="btn btn-primary btn-complete" id="completeBtn">
+              Go to Homepage
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="onboarding-footer">
+      <p>&copy; 2024 4MGI Strategy AI. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script src="./onboarding.js"></script>
+</body>
+
+</html>

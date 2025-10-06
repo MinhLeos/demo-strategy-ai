@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Dump - 4MGI Strategy AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">4MGI</div>
+      <nav class="main-nav">
+        <a href="home.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a href="brain-dump.html" class="nav-item active"><i class="fas fa-brain"></i><span>Brain Dump</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Gap Annihilator</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-tasks"></i><span>Tasks & Projects</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-pen-nib"></i><span>Branding</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-hourglass-half"></i><span>REP Log</span></a>
+      </nav>
+      <div class="user-profile">
+        <i class="fas fa-user-circle"></i>
+        <div class="user-info">
+          <p>John Doe</p>
+          <small>Real Estate Investor</small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content-area">
+      <header class="top-header brain-dump-header">
+        <div class="header-left">
+          <h1>Brain Dump</h1>
+          <span class="entry-count">24 entries</span>
+        </div>
+        <div class="header-actions">
+          <div class="search-filter-wrapper">
+            <div class="search-bar">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search brain dumps..." id="searchInput">
+            </div>
+            <div class="filter-dropdown">
+              <button class="filter-btn" id="filterBtn">
+                <i class="fas fa-filter"></i>
+                <span>All Categories</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="filter-menu" id="filterMenu">
+                <a href="#" class="filter-option active" data-filter="all">All Categories</a>
+                <a href="#" class="filter-option" data-filter="business">Business Ideas</a>
+                <a href="#" class="filter-option" data-filter="personal">Personal Goals</a>
+                <a href="#" class="filter-option" data-filter="projects">Projects</a>
+                <a href="#" class="filter-option" data-filter="learning">Learning Notes</a>
+                <a href="#" class="filter-option" data-filter="other">Other</a>
+              </div>
+            </div>
+          </div>
+          <button class="icon-btn"><i class="fas fa-bell notification-dot"></i></button>
+          <div class="user-avatar"><i class="fas fa-user"></i></div>
+        </div>
+      </header>
+
+      <section class="brain-dump-container">
+        <div class="brain-dump-list">
+
+          <!-- Brain Dump Entry 1 -->
+          <div class="brain-dump-entry" data-category="business">
+            <div class="entry-header">
+              <div class="entry-time">
+                <i class="fas fa-clock"></i>
+                <span>Today, 2:30 PM</span>
+              </div>
+              <div class="entry-actions">
+                <button class="action-icon" title="Convert to Task">
+                  <i class="fas fa-tasks"></i>
+                </button>
+                <button class="action-icon" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-icon" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="entry-content">
+              <p>Need to follow up with the contractor about the kitchen renovation timeline. Also check if the permits
+                are ready. Budget consideration: $15,000 max for the entire project including materials and labor.</p>
+            </div>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="tag tag-business">Business</span>
+                <span class="tag tag-urgent">Urgent</span>
+              </div>
+              <button class="structure-ai-btn">
+                <i class="fas fa-robot"></i>
+                Structure with AI
+              </button>
+            </div>
+          </div>
+
+          <!-- Brain Dump Entry 2 -->
+          <div class="brain-dump-entry" data-category="personal">
+            <div class="entry-header">
+              <div class="entry-time">
+                <i class="fas fa-clock"></i>
+                <span>Today, 11:15 AM</span>
+              </div>
+              <div class="entry-actions">
+                <button class="action-icon" title="Convert to Task">
+                  <i class="fas fa-tasks"></i>
+                </button>
+                <button class="action-icon" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-icon" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="entry-content">
+              <p>Book idea: "The Real Estate Investor's Guide to AI Automation" - Chapter outline: 1. Introduction to AI
+                in Real Estate, 2. Automating Property Analysis, 3. AI-Powered Marketing Strategies, 4. Virtual Property
+                Tours...</p>
+            </div>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="tag tag-personal">Personal</span>
+                <span class="tag tag-ideas">Ideas</span>
+              </div>
+              <button class="structure-ai-btn">
+                <i class="fas fa-robot"></i>
+                Structure with AI
+              </button>
+            </div>
+          </div>
+
+          <!-- Brain Dump Entry 3 -->
+          <div class="brain-dump-entry structured" data-category="projects">
+            <div class="entry-header">
+              <div class="entry-time">
+                <i class="fas fa-clock"></i>
+                <span>Yesterday, 4:45 PM</span>
+              </div>
+              <div class="structured-badge">
+                <i class="fas fa-check-circle"></i>
+                AI Structured
+              </div>
+              <div class="entry-actions">
+                <button class="action-icon" title="View Tasks">
+                  <i class="fas fa-list-check"></i>
+                </button>
+                <button class="action-icon" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-icon" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="entry-content">
+              <div class="structured-content">
+                <h4>Marketing Campaign Q2 2024</h4>
+                <ul class="structured-list">
+                  <li><i class="fas fa-check"></i> Create social media content calendar</li>
+                  <li><i class="fas fa-check"></i> Design email templates</li>
+                  <li><i class="fas fa-circle"></i> Schedule LinkedIn posts</li>
+                  <li><i class="fas fa-circle"></i> Prepare webinar presentation</li>
+                </ul>
+              </div>
+            </div>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="tag tag-projects">Projects</span>
+                <span class="tag tag-marketing">Marketing</span>
+              </div>
+              <div class="task-count">
+                <i class="fas fa-tasks"></i>
+                4 tasks created
+              </div>
+            </div>
+          </div>
+
+          <!-- Brain Dump Entry 4 -->
+          <div class="brain-dump-entry" data-category="learning">
+            <div class="entry-header">
+              <div class="entry-time">
+                <i class="fas fa-clock"></i>
+                <span>Yesterday, 9:30 AM</span>
+              </div>
+              <div class="entry-actions">
+                <button class="action-icon" title="Convert to Task">
+                  <i class="fas fa-tasks"></i>
+                </button>
+                <button class="action-icon" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-icon" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="entry-content">
+              <p>Learning notes from RE conference: Tax strategies for property investors - 1031 exchange benefits,
+                depreciation schedules, cost segregation studies. Speaker mentioned new IRS guidelines effective 2024.
+              </p>
+            </div>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="tag tag-learning">Learning</span>
+                <span class="tag tag-tax">Tax</span>
+              </div>
+              <button class="structure-ai-btn">
+                <i class="fas fa-robot"></i>
+                Structure with AI
+              </button>
+            </div>
+          </div>
+
+          <!-- Brain Dump Entry 5 -->
+          <div class="brain-dump-entry" data-category="business">
+            <div class="entry-header">
+              <div class="entry-time">
+                <i class="fas fa-clock"></i>
+                <span>Dec 28, 2023</span>
+              </div>
+              <div class="entry-actions">
+                <button class="action-icon" title="Convert to Task">
+                  <i class="fas fa-tasks"></i>
+                </button>
+                <button class="action-icon" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-icon" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="entry-content">
+              <p>Review property portfolio performance. Focus areas: Hibiscus property needs major repairs, Sunset
+                Boulevard unit has high vacancy rate, Consider selling Oak Street duplex if offer exceeds $450K.</p>
+            </div>
+            <div class="entry-footer">
+              <div class="entry-tags">
+                <span class="tag tag-business">Business</span>
+                <span class="tag tag-review">Review</span>
+              </div>
+              <button class="structure-ai-btn">
+                <i class="fas fa-robot"></i>
+                Structure with AI
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Load More Button -->
+        <div class="load-more-wrapper">
+          <button class="load-more-btn">
+            <i class="fas fa-spinner"></i>
+            Load More Entries
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="home.html"><i class="fas fa-home"></i>Home</a>
+    <a href="brain-dump.html" class="active"><i class="fas fa-brain"></i>Brain Dump</a>
+    <a href="#"><i class="fas fa-tasks"></i>Tasks</a>
+    <a href="#"><i class="fas fa-pen-nib"></i>Branding</a>
+    <a href="#"><i class="fas fa-user"></i>Profile</a>
+  </nav>
+
+  <!-- Floating Action Button -->
+  <button class="fab" id="fabButton" aria-label="New Brain Dump">
+    <i class="fas fa-microphone"></i>
+  </button>
+
+  <!-- Brain Dump Modal (Same as Dashboard) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content" id="modalContent">
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="brain-dump-modal">
+        <div class="mic-icon-wrapper">
+          <button class="mic-button" id="micButton">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <div class="pulse-ring"></div>
+        </div>
+
+        <div class="input-container">
+          <textarea class="brain-dump-input" id="brainDumpInput" placeholder="Type or tap mic to start speaking..."
+            rows="4"></textarea>
+        </div>
+
+        <button class="structure-btn" id="structureBtn">
+          <i class="fas fa-robot"></i>
+          Structure with AI
+        </button>
+
+        <div class="voice-indicator" id="voiceIndicator">
+          <span class="recording-dot"></span>
+          <span>Listening...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Task Management Modal -->
+  <div class="task-modal-overlay" id="taskModalOverlay">
+    <div class="task-modal-content">
+      <div class="task-modal-header">
+        <h3 id="taskModalTitle">Create New Task</h3>
+        <button class="task-modal-close" id="taskModalClose">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="task-modal-body">
+        <form id="taskForm">
+          <div class="form-group">
+            <label for="taskName">Task Name</label>
+            <input type="text" id="taskName" name="taskName" placeholder="Enter task name..." required>
+          </div>
+          
+          <div class="form-group">
+            <label for="taskDescription">Description</label>
+            <textarea id="taskDescription" name="taskDescription" placeholder="Enter task description..." rows="3"></textarea>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="taskPriority">Priority</label>
+              <select id="taskPriority" name="taskPriority">
+                <option value="normal">Normal</option>
+                <option value="high">High Priority</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="taskCategory">Category</label>
+              <select id="taskCategory" name="taskCategory">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="taskDueDate">Due Date (Optional)</label>
+            <input type="date" id="taskDueDate" name="taskDueDate">
+          </div>
+        </form>
+      </div>
+      
+      <div class="task-modal-footer">
+        <button type="button" class="btn-secondary" id="taskCancelBtn">
+          <i class="fas fa-times"></i> Cancel
+        </button>
+        <button type="button" class="btn-primary" id="taskSaveBtn">
+          <i class="fas fa-save"></i> Save Task
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./brain-dump.js"></script>
+</body>
+
+</html>
