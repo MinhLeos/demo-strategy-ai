@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Save skip status
       localStorage.setItem("onboardingSkipped", "true");
       // Redirect to home.html instead of index.html
-      window.location.href = "/home.html";
+      window.location.href = "home.html";
     }
   });
 
@@ -521,7 +521,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Redirect to home.html after short delay
     setTimeout(() => {
-      window.location.href = "/home.html";
+      window.location.href = "home.html";
     }, 1500);
   }
 
@@ -633,7 +633,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ESC to skip (with confirmation)
     if (e.key === "Escape" && currentStep > 0) {
       if (confirm("Are you sure you want to skip the remaining questions?")) {
-        window.location.href = "/home.html";
+        window.location.href = "home.html";
       }
     }
   });
