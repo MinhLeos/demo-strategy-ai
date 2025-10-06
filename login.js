@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Redirect to onboarding after 2 seconds
         setTimeout(() => {
-          window.location.href = "/onboarding";
+          window.location.href = "onboarding.html";
         }, 2000);
       }, 2000);
     });
