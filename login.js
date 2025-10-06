@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Redirect after 1 second
         setTimeout(() => {
-          window.location.href = "/onboarding.html";
+          window.location.href = "onboarding.html";
         }, 1000);
 
         submitBtn.innerHTML = originalText;
