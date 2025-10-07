@@ -1,0 +1,735 @@
+/* ========================================
+   BRAIN DUMP FLOW - RESPONSIVE ENHANCEMENTS
+   Adds mobile-first responsive support
+   ======================================== */
+
+/* ========================================
+   MOBILE-FIRST BASE (320px - 640px)
+   ======================================== */
+
+/* Wrapper & Container - Mobile */
+.brain-dump-flow-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--color-primary), #00acc1);
+  padding: 16px;
+}
+
+.brain-dump-flow-container {
+  max-width: 100%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  min-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Step Container - Mobile */
+.brain-dump-step {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.brain-dump-step.full-screen {
+  padding: 16px;
+}
+
+/* Step Header - Mobile */
+.step-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.back-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #666;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.back-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.step-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.step-subtitle {
+  font-size: 14px;
+  color: #95a5a6;
+  margin: 4px 0 0;
+}
+
+/* Step Content - Mobile */
+.step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+/* Instruction Card - Mobile */
+.instruction-card {
+  background: linear-gradient(135deg, var(--color-primary), #00acc1);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.instruction-card strong {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Intro Message - Mobile */
+.intro-message {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.intro-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--color-primary), #00acc1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.intro-text {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.intro-text strong {
+  color: #667eea;
+}
+
+/* Step Visual - Mobile */
+.step-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  border-radius: 12px;
+}
+
+.chaos-illustration {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.thought-bubble {
+  width: 48px;
+  height: 48px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: float 3s ease-in-out infinite;
+}
+
+.thought-bubble:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.thought-bubble:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.thought-bubble:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+.thought-bubble:nth-child(5) {
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.arrow-down {
+  font-size: 28px;
+  color: #667eea;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(10px); }
+}
+
+.organized-illustration {
+  background: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #48bb78;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.2);
+}
+
+.organized-illustration i {
+  font-size: 24px;
+}
+
+/* Step Actions - Mobile */
+.step-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  flex-shrink: 0;
+}
+
+/* Buttons - Mobile */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary), #00acc1);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+.btn-secondary:hover {
+  background: #cbd5e0;
+}
+
+.btn-large,
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 16px;
+  border-radius: 14px;
+}
+
+.btn-icon {
+  padding: 12px;
+  width: 44px;
+  height: 44px;
+}
+
+/* Input Workspace - Mobile */
+.input-workspace {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Voice Input - Mobile */
+.voice-input-section {
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.mic-btn-large {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--color-primary), #00acc1);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 36px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(0, 188, 212, 0.4);
+  margin: 0 auto;
+  display: block;
+}
+
+.mic-btn-large:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+}
+
+.mic-btn-large.recording {
+  background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.voice-status {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #718096;
+}
+
+/* OR Divider - Mobile */
+.or-divider {
+  position: relative;
+  text-align: center;
+  margin: 16px 0;
+}
+
+.or-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.or-divider span {
+  position: relative;
+  background: white;
+  padding: 0 16px;
+  color: #a0aec0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Text Input - Mobile */
+.text-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.text-input-area textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.text-input-area textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Preview Column - Mobile */
+.preview-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.preview-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  min-height: 200px;
+}
+
+.preview-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 12px;
+}
+
+.preview-content {
+  font-size: 14px;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+/* Kanban Board - Mobile */
+.kanban-board {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.kanban-column {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 150px;
+}
+
+.kanban-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.kanban-column-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.kanban-count {
+  background: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.kanban-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kanban-item {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  color: #2d3748;
+  cursor: move;
+  transition: all 0.2s ease;
+}
+
+.kanban-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   TABLET (641px - 1024px)
+   ======================================== */
+
+@media (min-width: 641px) {
+  .brain-dump-flow-wrapper {
+    padding: 24px;
+  }
+
+  .brain-dump-flow-container {
+    border-radius: 20px;
+    min-height: calc(100vh - 48px);
+  }
+
+  .brain-dump-step {
+    padding: 32px;
+  }
+
+  .brain-dump-step.full-screen {
+    padding: 24px;
+  }
+
+  .step-header {
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .back-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .step-title {
+    font-size: 28px;
+  }
+
+  .step-subtitle {
+    font-size: 15px;
+  }
+
+  .step-content {
+    gap: 24px;
+  }
+
+  .instruction-card {
+    padding: 20px 28px;
+    font-size: 16px;
+  }
+
+  .intro-message {
+    flex-direction: row;
+    text-align: left;
+    padding: 28px;
+  }
+
+  .intro-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 32px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+  }
+
+  .step-visual {
+    padding: 28px;
+  }
+
+  .thought-bubble {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  .step-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+
+  .btn-large,
+  .btn-lg {
+    padding: 14px 28px;
+  }
+
+  .mic-btn-large {
+    width: 100px;
+    height: 100px;
+    font-size: 42px;
+  }
+
+  .input-workspace {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .kanban-board {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .kanban-column {
+    flex: 1;
+    padding: 20px;
+  }
+}
+
+/* ========================================
+   DESKTOP (1024px+)
+   ======================================== */
+
+@media (min-width: 1024px) {
+  .brain-dump-flow-wrapper {
+    padding: 40px;
+  }
+
+  .brain-dump-flow-container {
+    border-radius: 24px;
+    min-height: calc(100vh - 80px);
+  }
+
+  .brain-dump-step {
+    padding: 60px;
+  }
+
+  .brain-dump-step.full-screen {
+    padding: 40px;
+  }
+
+  .step-header {
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .back-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .step-title {
+    font-size: 36px;
+  }
+
+  .step-subtitle {
+    font-size: 16px;
+  }
+
+  .step-content {
+    gap: 30px;
+  }
+
+  .instruction-card {
+    padding: 24px 32px;
+    font-size: 18px;
+  }
+
+  .intro-message {
+    padding: 40px;
+  }
+
+  .intro-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+  }
+
+  .intro-text {
+    font-size: 18px;
+  }
+
+  .step-visual {
+    padding: 40px;
+  }
+
+  .thought-bubble {
+    width: 64px;
+    height: 64px;
+    font-size: 32px;
+  }
+
+  .btn-large,
+  .btn-lg {
+    padding: 16px 32px;
+    font-size: 16px;
+  }
+
+  .mic-btn-large {
+    width: 120px;
+    height: 120px;
+    font-size: 48px;
+  }
+
+  .input-workspace {
+    gap: 32px;
+  }
+
+  .kanban-board {
+    gap: 24px;
+  }
+
+  .kanban-column {
+    padding: 24px;
+  }
+}
+
+/* ========================================
+   LOADING & ANIMATIONS
+   ======================================== */
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

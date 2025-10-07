@@ -39,21 +39,34 @@ body {
 
 /* --- Sidebar (Desktop) --- */
 .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 240px;
+  height: 100vh;
   background-color: var(--color-dark);
   color: var(--color-white);
   padding: 20px;
   display: flex;
   flex-direction: column;
   transition: width 0.3s;
+  overflow-y: auto;
+  z-index: 100;
 }
 
 .logo {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-primary);
   margin-bottom: 40px;
   text-align: center;
+  padding: 0 20px;
+}
+
+.logo img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
 }
 
 .main-nav .nav-item {
@@ -114,8 +127,11 @@ body {
 /* --- Main Content --- */
 .content-area {
   flex: 1;
+  margin-left: 240px;
   padding: 20px;
   overflow-y: auto;
+  background: linear-gradient(135deg, #e0e7ff 0%, #bfdbfe 100%);
+  min-height: 100vh;
 }
 
 .top-header {
@@ -548,7 +564,7 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .modal-overlay.show {
@@ -785,6 +801,7 @@ body {
   }
 
   .content-area {
+    margin-left: 0;
     padding: 15px;
     padding-bottom: 70px;
   }
@@ -816,6 +833,7 @@ body {
   .fab {
     bottom: 80px;
     right: 20px;
+    z-index: 100;
   }
 
   .modal-content {
@@ -839,6 +857,7 @@ body {
     padding: 10px 0;
     justify-content: space-around;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 50;
   }
 
   .bottom-nav a {
@@ -868,6 +887,7 @@ body {
   }
 
   .content-area {
+    margin-left: 0;
     padding: 10px;
     padding-bottom: 70px;
   }
@@ -942,6 +962,7 @@ body {
     font-size: 1.2rem;
     bottom: 75px;
     right: 15px;
+    z-index: 100;
   }
 
   /* Mobile Modal */
@@ -991,6 +1012,7 @@ body {
     padding: 8px 0;
     justify-content: space-around;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 50;
   }
 
   .bottom-nav a {
@@ -1815,5 +1837,193 @@ body {
   .form-row {
     grid-template-columns: 1fr;
     gap: 15px;
+  }
+}
+
+/* --- MIT Label & Info Button --- */
+.title-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mit-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--color-gray);
+  font-weight: 400;
+}
+
+.info-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: rgba(0, 188, 212, 0.1);
+  color: var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 0.75rem;
+  padding: 0;
+}
+
+.info-btn:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* --- Info Modal --- */
+.info-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.info-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.info-modal-content {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.info-modal.show .info-modal-content {
+  transform: scale(1);
+}
+
+.info-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.2s;
+  z-index: 1;
+}
+
+.info-modal-close:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.1);
+}
+
+.info-modal-header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+  color: white;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.info-modal-header i {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.info-modal-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.info-modal-body {
+  padding: 30px;
+}
+
+.info-modal-body p {
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.info-list li {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  padding: 10px 0;
+  color: var(--color-text);
+}
+
+.info-list i {
+  color: var(--color-green);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.info-tip {
+  background: rgba(255, 193, 7, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #ffc107;
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.info-tip i {
+  color: #ffc107;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.info-tip strong {
+  color: var(--color-dark);
+}
+
+@media (max-width: 768px) {
+  .mit-label {
+    font-size: 0.75rem;
+  }
+  
+  .info-modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .info-modal-header {
+    padding: 30px 20px;
+  }
+  
+  .info-modal-body {
+    padding: 20px;
   }
 }

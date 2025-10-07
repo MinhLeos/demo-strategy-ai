@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Branding - 4MGI Strategy AI</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./design-system.css">
+  <link rel="stylesheet" href="./layout.css">
+  <link rel="stylesheet" href="./branding.css">
+  
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* SVG Gradient Definition for Score Circle */
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Notification System */
+    .notification-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+    }
+
+    .notification {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 300px;
+      max-width: 400px;
+      pointer-events: all;
+      animation: slideIn 0.3s ease-out;
+      border-left: 4px solid;
+    }
+
+    .notification.success {
+      border-left-color: #48bb78;
+    }
+
+    .notification.error {
+      border-left-color: #fc8181;
+    }
+
+    .notification.warning {
+      border-left-color: #f6e05e;
+    }
+
+    .notification.info {
+      border-left-color: #667eea;
+    }
+
+    .notification-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .notification.success .notification-icon {
+      background: rgba(72, 187, 120, 0.15);
+      color: #48bb78;
+    }
+
+    .notification.error .notification-icon {
+      background: rgba(252, 129, 129, 0.15);
+      color: #fc8181;
+    }
+
+    .notification.warning .notification-icon {
+      background: rgba(246, 224, 94, 0.15);
+      color: #f6e05e;
+    }
+
+    .notification.info .notification-icon {
+      background: rgba(102, 126, 234, 0.15);
+      color: #667eea;
+    }
+
+    .notification-content {
+      flex: 1;
+    }
+
+    .notification-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 4px;
+    }
+
+    .notification-message {
+      font-size: 14px;
+      color: #4a5568;
+    }
+
+    .notification-close {
+      background: none;
+      border: none;
+      color: #a0aec0;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 4px;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .notification-close:hover {
+      color: #4a5568;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG Definitions -->
+  <svg style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#f5576c;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="app-container">
+    <!-- Sidebar (Desktop/Tablet) -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="./images/logo.jfif" alt="4MGI Logo">
+      </div>
+      <nav class="main-nav">
+        <a href="home.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <div class="nav-item-group">
+          <a href="brain-dump.html" class="nav-item"><i class="fas fa-brain"></i><span>Brain Dump</span></a>
+          <a href="brain-dump-flow.html" class="nav-item nav-item-sub" style="padding-left: 48px; font-size: 13px;">
+            <i class="fas fa-robot"></i><span>AI Flow</span>
+            <span style="
+              background: linear-gradient(135deg, var(--color-primary), #00acc1);
+              color: white;
+              padding: 2px 6px;
+              border-radius: 8px;
+              font-size: 10px;
+              margin-left: 8px;
+              font-weight: 700;
+            ">NEW</span>
+          </a>
+        </div>
+        <a href="gap-annihilator.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Gap Annihilator</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-tasks"></i><span>Tasks & Projects</span></a>
+        <a href="branding.html" class="nav-item active"><i class="fas fa-pen-nib"></i><span>Branding</span></a>
+        <a href="rep-logger.html" class="nav-item"><i class="fas fa-chart-bar"></i><span>REP Log</span></a>
+      </nav>
+      <div class="user-profile">
+        <i class="fas fa-user-circle"></i>
+        <div class="user-info">
+          <p>John Doe</p>
+          <small>Real Estate Investor</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <h1><i class="fas fa-pen-nib" style="color: #667eea; margin-right: 8px;"></i> Personal Branding</h1>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn"><i class="fas fa-bell notification-dot"></i></button>
+          <div class="user-avatar"><i class="fas fa-user"></i></div>
+        </div>
+      </header>
+
+      <!-- Branding Content -->
+      <div id="brandingContainer"></div>
+    </main>
+  </div>
+
+  <!-- Notification Container -->
+  <div class="notification-container" id="notificationContainer"></div>
+
+  <!-- Scripts -->
+  <script src="branding.js"></script>
+
+  <script>
+    // Notification System
+    function showNotification(title, message, type = 'info') {
+      const container = document.getElementById('notificationContainer');
+      
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      
+      const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-times-circle',
+        warning: 'fa-exclamation-triangle',
+        info: 'fa-info-circle'
+      };
+      
+      notification.innerHTML = `
+        <div class="notification-icon">
+          <i class="fas ${icons[type]}"></i>
+        </div>
+        <div class="notification-content">
+          <div class="notification-title">${title}</div>
+          <div class="notification-message">${message}</div>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      `;
+      
+      container.appendChild(notification);
+      
+      // Auto-remove after 4 seconds
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(() => notification.remove(), 300);
+      }, 4000);
+    }
+
+    // Check for completion redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('new') === 'true') {
+      // Start fresh assessment
+      localStorage.removeItem('currentBrand');
+    }
+
+    // Load existing data if resuming
+    const existingBrand = localStorage.getItem('currentBrand');
+    if (existingBrand) {
+      const data = JSON.parse(existingBrand);
+      PersonalBranding.brandData = data;
+      PersonalBranding.currentStep = data.currentStep || 1;
+    }
+  </script>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-nav">
+    <div class="mobile-nav-items">
+      <a href="home.html" class="mobile-nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="brain-dump.html" class="mobile-nav-item">
+        <i class="fas fa-brain"></i>
+        <span>Dump</span>
+      </a>
+      <a href="gap-annihilator.html" class="mobile-nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Gap</span>
+      </a>
+      <a href="rep-logger.html" class="mobile-nav-item">
+        <i class="fas fa-chart-bar"></i>
+        <span>REP</span>
+      </a>
+      <a href="branding.html" class="mobile-nav-item active">
+        <i class="fas fa-pen-nib"></i>
+        <span>Brand</span>
+      </a>
+    </div>
+  </nav>
+</body>
+</html>

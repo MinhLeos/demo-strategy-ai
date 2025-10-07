@@ -59,25 +59,12 @@ body {
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
-.logo-icon {
-  width: 45px;
+.logo-image {
   height: 45px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-white);
-  font-size: 1.3rem;
-}
-
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-dark);
+  width: auto;
+  border-radius: 8px;
 }
 
 .progress-section {
@@ -806,6 +793,10 @@ body {
     justify-content: center;
   }
 
+  .logo-image {
+    height: 38px;
+  }
+
   .progress-section {
     width: 100%;
     max-width: none;
@@ -883,5 +874,185 @@ body {
 
   .checkbox-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* --- Video Placeholder --- */
+.video-container {
+  margin: 30px 0;
+}
+
+.video-placeholder {
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-placeholder::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  opacity: 0.5;
+}
+
+.video-placeholder:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.play-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.video-placeholder:hover .play-icon {
+  background: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.play-icon i {
+  margin-left: 5px;
+}
+
+.video-placeholder p {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.video-note {
+  display: block;
+  text-align: center;
+  color: var(--color-gray);
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* --- Role Multi-Select --- */
+.role-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.role-checkbox {
+  cursor: pointer;
+}
+
+.role-checkbox input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.role-checkbox-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: white;
+  transition: all 0.3s;
+}
+
+.role-checkbox-inner i {
+  font-size: 1.8rem;
+  color: var(--color-gray);
+  transition: color 0.3s;
+}
+
+.role-checkbox-inner span {
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.role-checkbox:hover .role-checkbox-inner {
+  border-color: var(--color-primary);
+  background: rgba(0, 188, 212, 0.02);
+}
+
+.role-checkbox input:checked ~ .role-checkbox-inner {
+  border-color: var(--color-primary);
+  background: rgba(0, 188, 212, 0.08);
+}
+
+.role-checkbox input:checked ~ .role-checkbox-inner i {
+  color: var(--color-primary);
+}
+
+.other-role-input {
+  margin-top: 15px;
+}
+
+.other-role-input .other-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.other-role-input .other-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+}
+
+@media (max-width: 767px) {
+  .role-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .video-placeholder {
+    height: 240px;
+  }
+  
+  .play-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
   }
 }

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Brain Dump Flow - 4MGI Strategy AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./design-system.css">
+  <link rel="stylesheet" href="./layout.css">
+  <link rel="stylesheet" href="./brain-dump-flow.css">
+  <link rel="stylesheet" href="./brain-dump-flow-responsive.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Sidebar (Desktop/Tablet) -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="./images/logo.jfif" alt="4MGI Logo">
+      </div>
+      <nav class="main-nav">
+        <a href="home.html" class="nav-item"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <div class="nav-item-group">
+          <a href="brain-dump.html" class="nav-item"><i class="fas fa-brain"></i><span>Brain Dump</span></a>
+          <a href="brain-dump-flow.html" class="nav-item nav-item-sub active" style="padding-left: 48px; font-size: 13px;">
+            <i class="fas fa-robot"></i><span>AI Flow</span>
+            <span style="
+              background: linear-gradient(135deg, var(--color-primary), #00acc1);
+              color: white;
+              padding: 2px 6px;
+              border-radius: 8px;
+              font-size: 10px;
+              margin-left: 8px;
+              font-weight: 700;
+            ">NEW</span>
+          </a>
+        </div>
+        <a href="gap-annihilator.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Gap Annihilator</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-tasks"></i><span>Tasks & Projects</span></a>
+        <a href="branding.html" class="nav-item"><i class="fas fa-pen-nib"></i><span>Branding</span></a>
+        <a href="rep-logger.html" class="nav-item"><i class="fas fa-chart-bar"></i><span>REP Log</span></a>
+      </nav>
+      <div class="user-profile">
+        <i class="fas fa-user-circle"></i>
+        <div class="user-info">
+          <p>John Doe</p>
+          <small>Real Estate Investor</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <h1><i class="fas fa-robot" style="color: #667eea; margin-right: 8px;"></i> AI Brain Dump Flow</h1>
+        </div>
+        <div class="header-actions">
+          <a href="brain-dump.html" class="icon-btn" title="Back to Brain Dump List">
+            <i class="fas fa-list"></i>
+          </a>
+          <button class="icon-btn"><i class="fas fa-bell notification-dot"></i></button>
+          <div class="user-avatar"><i class="fas fa-user"></i></div>
+        </div>
+      </header>
+
+      <!-- Brain Dump Flow Content -->
+      <div class="brain-dump-flow-wrapper with-layout">
+        <div class="brain-dump-flow-container">
+          <div id="brainDumpFlowContainer">
+            <!-- Content will be dynamically rendered by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <p>&copy; 2025 4MGI Strategy AI. All rights reserved. 
+          <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Support</a>
+        </p>
+      </footer>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+      <div class="mobile-nav-items">
+        <a href="home.html" class="mobile-nav-item">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="brain-dump.html" class="mobile-nav-item active">
+          <i class="fas fa-brain"></i>
+          <span>Dump</span>
+        </a>
+        <a href="gap-annihilator.html" class="mobile-nav-item">
+          <i class="fas fa-chart-line"></i>
+          <span>Gap</span>
+        </a>
+        <a href="rep-logger.html" class="mobile-nav-item">
+          <i class="fas fa-chart-bar"></i>
+          <span>REP</span>
+        </a>
+        <a href="branding.html" class="mobile-nav-item">
+          <i class="fas fa-pen-nib"></i>
+          <span>Brand</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Reuse notification system -->
+  <script>
+    // Notification System (copied from existing)
+    function showNotification(title, message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        padding: 16px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        min-width: 300px;
+        max-width: 400px;
+        animation: slideInRight 0.3s ease;
+      `;
+
+      const colors = {
+        success: '#4caf50',
+        error: '#f44336',
+        warning: '#ff9800',
+        info: '#00bcd4'
+      };
+
+      const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-exclamation-circle',
+        warning: 'fa-exclamation-triangle',
+        info: 'fa-info-circle'
+      };
+
+      notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <i class="fas ${icons[type]}" style="font-size: 24px; color: ${colors[type]};"></i>
+          <div style="flex: 1;">
+            <div style="font-weight: 600; color: #2c3e50; margin-bottom: 4px;">${title}</div>
+            <div style="font-size: 14px; color: #666;">${message}</div>
+          </div>
+          <button onclick="this.closest('.notification').remove()" style="background: none; border: none; font-size: 20px; color: #999; cursor: pointer;">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      `;
+
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+      }, 4000);
+    }
+
+    // Add animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideInRight {
+        from {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideOutRight {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+
+  <script src="./brain-dump-flow.js"></script>
+</body>
+
+</html>

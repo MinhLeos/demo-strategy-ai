@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧪 Responsive Layout Test - 4MGI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .test-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      text-align: center;
+      color: #667eea;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .status-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+      text-align: center;
+    }
+
+    .status-card h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .status-card .number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .status-card .label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .page-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .page-card {
+      background: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .page-card:hover {
+      border-color: #667eea;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    }
+
+    .page-card h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-card h3 i {
+      color: #667eea;
+      font-size: 1.5rem;
+    }
+
+    .page-card p {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+
+    .page-card .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .feature-tag {
+      background: #e8f0fe;
+      color: #667eea;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .page-card a {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .page-card a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .test-section {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .test-section h2 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .test-section h2 i {
+      color: #667eea;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      padding: 10px;
+      margin-bottom: 8px;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checklist li i {
+      color: #4caf50;
+      font-size: 1.2rem;
+    }
+
+    .device-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .device-btn {
+      padding: 10px 20px;
+      border: 2px solid #667eea;
+      background: white;
+      color: #667eea;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .device-btn:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .badge-new {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .test-container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .status-card .number {
+        font-size: 2rem;
+      }
+
+      .page-links,
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>🧪 Responsive Layout Test Dashboard</h1>
+    <p class="subtitle">Test tất cả pages với layout mới - Desktop, Tablet, Mobile</p>
+
+    <!-- Status Overview -->
+    <div class="status-grid">
+      <div class="status-card">
+        <h3>Pages Updated</h3>
+        <div class="number">6</div>
+        <div class="label">HTML Files</div>
+      </div>
+      <div class="status-card">
+        <h3>Breakpoints</h3>
+        <div class="number">4</div>
+        <div class="label">Responsive Sizes</div>
+      </div>
+      <div class="status-card">
+        <h3>Components</h3>
+        <div class="number">3</div>
+        <div class="label">Sidebar, Header, Mobile Nav</div>
+      </div>
+    </div>
+
+    <!-- Quick Test Buttons -->
+    <div class="test-section">
+      <h2><i class="fas fa-mobile-alt"></i> Quick Device Simulation</h2>
+      <p>Sử dụng Chrome DevTools để test responsive:</p>
+      <div class="device-buttons">
+        <button class="device-btn" onclick="alert('Press F12 → Ctrl+Shift+M → Choose Desktop (1920x1080)')">
+          <i class="fas fa-desktop"></i> Desktop
+        </button>
+        <button class="device-btn" onclick="alert('Press F12 → Ctrl+Shift+M → Choose iPad (768x1024)')">
+          <i class="fas fa-tablet-alt"></i> Tablet
+        </button>
+        <button class="device-btn" onclick="alert('Press F12 → Ctrl+Shift+M → Choose iPhone SE (375x667)')">
+          <i class="fas fa-mobile-alt"></i> Mobile
+        </button>
+        <button class="device-btn" onclick="alert('Press F12 → Ctrl+Shift+M → Responsive (320x568)')">
+          <i class="fas fa-mobile"></i> XS Mobile
+        </button>
+      </div>
+    </div>
+
+    <!-- Page Links -->
+    <div class="test-section">
+      <h2><i class="fas fa-link"></i> Test All Pages</h2>
+      <div class="page-links">
+        
+        <div class="page-card">
+          <h3><i class="fas fa-home"></i> Home Dashboard</h3>
+          <p>Dashboard với MIT tasks, charts, và quick actions</p>
+          <div class="features">
+            <span class="feature-tag">Sidebar</span>
+            <span class="feature-tag">Header</span>
+            <span class="feature-tag">Mobile Nav</span>
+            <span class="feature-tag">2-Col Grid</span>
+          </div>
+          <a href="home.html" target="_blank">Test Home Page <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="page-card">
+          <h3><i class="fas fa-brain"></i> Brain Dump List</h3>
+          <p>List view của brain dumps với search và filter</p>
+          <div class="features">
+            <span class="feature-tag">Sidebar</span>
+            <span class="feature-tag">AI Flow Button</span>
+            <span class="feature-tag">Mobile Nav</span>
+            <span class="feature-tag">Responsive Header</span>
+          </div>
+          <a href="brain-dump.html" target="_blank">Test Brain Dump <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="page-card">
+          <h3><i class="fas fa-robot"></i> AI Brain Dump Flow <span class="badge-new">NEW</span></h3>
+          <p>5-step wizard với AI guidance và voice input</p>
+          <div class="features">
+            <span class="feature-tag">Sidebar</span>
+            <span class="feature-tag">Header</span>
+            <span class="feature-tag">Footer</span>
+            <span class="feature-tag">Mobile Nav</span>
+            <span class="feature-tag">Wizard Steps</span>
+          </div>
+          <a href="brain-dump-flow.html" target="_blank">Test AI Flow <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="page-card">
+          <h3><i class="fas fa-chart-line"></i> Gap Annihilator</h3>
+          <p>Strategic goal planning tool</p>
+          <div class="features">
+            <span class="feature-tag">Mobile Nav</span>
+            <span class="feature-tag">Forms</span>
+            <span class="feature-tag">Progress Steps</span>
+          </div>
+          <a href="gap-annihilator.html" target="_blank">Test Gap Annihilator <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="page-card">
+          <h3><i class="fas fa-chart-bar"></i> REP Logger</h3>
+          <p>Real Estate Professional activity tracker</p>
+          <div class="features">
+            <span class="feature-tag">Mobile Nav</span>
+            <span class="feature-tag">Quick Actions</span>
+            <span class="feature-tag">Timer</span>
+          </div>
+          <a href="rep-logger.html" target="_blank">Test REP Logger <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="page-card">
+          <h3><i class="fas fa-pen-nib"></i> Branding</h3>
+          <p>Personal branding and marketing strategy</p>
+          <div class="features">
+            <span class="feature-tag">Mobile Nav</span>
+            <span class="feature-tag">Score Circle</span>
+            <span class="feature-tag">Cards</span>
+          </div>
+          <a href="branding.html" target="_blank">Test Branding <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="test-section">
+      <h2><i class="fas fa-check-circle"></i> Testing Checklist</h2>
+      <p>Verify these items trên MỖI page:</p>
+      
+      <h3 style="margin-top: 20px; color: #667eea;">Desktop (1920x1080)</h3>
+      <ul class="checklist">
+        <li><i class="fas fa-check-circle"></i> Sidebar visible với full navigation</li>
+        <li><i class="fas fa-check-circle"></i> Top header với all actions</li>
+        <li><i class="fas fa-check-circle"></i> Footer visible (nếu có)</li>
+        <li><i class="fas fa-check-circle"></i> NO mobile nav visible</li>
+        <li><i class="fas fa-check-circle"></i> AI Brain Dump button full text</li>
+      </ul>
+
+      <h3 style="margin-top: 20px; color: #667eea;">Tablet (768x1024)</h3>
+      <ul class="checklist">
+        <li><i class="fas fa-check-circle"></i> Sidebar still visible</li>
+        <li><i class="fas fa-check-circle"></i> Layout compact nhưng readable</li>
+        <li><i class="fas fa-check-circle"></i> NO mobile nav</li>
+      </ul>
+
+      <h3 style="margin-top: 20px; color: #667eea;">Mobile (375x667)</h3>
+      <ul class="checklist">
+        <li><i class="fas fa-check-circle"></i> Sidebar HIDDEN</li>
+        <li><i class="fas fa-check-circle"></i> Mobile bottom nav VISIBLE</li>
+        <li><i class="fas fa-check-circle"></i> AI Flow button compact</li>
+        <li><i class="fas fa-check-circle"></i> Content padding-bottom 80px</li>
+        <li><i class="fas fa-check-circle"></i> Active state correct trong nav</li>
+        <li><i class="fas fa-check-circle"></i> NO horizontal scroll</li>
+      </ul>
+    </div>
+
+    <!-- Documentation Links -->
+    <div class="test-section">
+      <h2><i class="fas fa-book"></i> Documentation</h2>
+      <p>Chi tiết technical implementation và testing guide:</p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+        <a href="RESPONSIVE-LAYOUT-SUMMARY.md" target="_blank" style="display: inline-block; padding: 10px 20px; background: #4caf50; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+          📄 Layout Summary
+        </a>
+        <a href="TESTING-GUIDE.md" target="_blank" style="display: inline-block; padding: 10px 20px; background: #ff9800; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+          🧪 Testing Guide
+        </a>
+        <a href="BRAIN-DUMP-QUICKSTART.md" target="_blank" style="display: inline-block; padding: 10px 20px; background: #00bcd4; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+          🚀 Quick Start
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px solid #e0e0e0; color: #666;">
+      <p><strong>4MGI Strategy AI</strong> - Responsive Layout Test Dashboard</p>
+      <p style="font-size: 0.9rem; margin-top: 10px;">
+        All pages tested and ready for production 🚀
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Log current screen size
+    function logScreenSize() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      let device = '';
+      
+      if (width >= 1024) device = '🖥️ Desktop';
+      else if (width >= 768) device = '📱 Tablet';
+      else if (width >= 375) device = '📱 Mobile';
+      else device = '📱 XS Mobile';
+      
+      console.log(`${device} - ${width}x${height}px`);
+    }
+
+    logScreenSize();
+    window.addEventListener('resize', logScreenSize);
+
+    // Show instructions on load
+    window.addEventListener('load', function() {
+      console.log('%c🧪 RESPONSIVE TEST DASHBOARD', 'font-size: 20px; color: #667eea; font-weight: bold;');
+      console.log('%cPress F12 → Ctrl+Shift+M to toggle device toolbar', 'font-size: 14px; color: #666;');
+      console.log('%cTest all pages at different breakpoints', 'font-size: 14px; color: #666;');
+    });
+  </script>
+</body>
+</html>

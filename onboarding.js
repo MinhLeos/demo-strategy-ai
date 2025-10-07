@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalSteps = 7;
   let userData = {
     industries: [],
-    role: "",
+    roles: [], // Updated to array for multi-select
+    otherRole: "",
     workStyle: "",
     priorities: [],
     challenges: [],
@@ -90,6 +91,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===================================
   // DYNAMIC FORM INTERACTIONS
   // ===================================
+
+  // Video Placeholder Click Handler
+  const videoPlaceholder = document.getElementById('videoPlaceholder');
+  if (videoPlaceholder) {
+    videoPlaceholder.addEventListener('click', () => {
+      showNotification(
+        'Coming Soon',
+        'The introduction video will be available shortly. You can proceed with the survey.',
+        'info'
+      );
+    });
+  }
+
+  // Role "Other" checkbox handler
+  document.querySelectorAll('input[name="role"]').forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      const otherCheckbox = document.querySelector('input[name="role"][value="other"]');
+      const otherInput = document.getElementById("otherRoleInput");
+      
+      if (otherCheckbox && otherCheckbox.checked) {
+        otherInput.style.display = "block";
+      } else if (otherInput) {
+        otherInput.style.display = "none";
+      }
+    });
+  });
 
   // Priority selection limit (max 2)
   document.querySelectorAll('input[name="priorities"]').forEach((checkbox) => {
@@ -184,14 +211,14 @@ document.addEventListener("DOMContentLoaded", () => {
       case 1:
         const industries = document.querySelectorAll('input[name="industry"]:checked');
         const otherIndustry = document.getElementById("otherIndustry")?.value.trim();
-        const role = document.getElementById("currentRole")?.value;
+        const roles = document.querySelectorAll('input[name="role"]:checked');
         const workStyle = document.getElementById("workStyle")?.value;
 
         if (industries.length === 0 && !otherIndustry) {
           message = "Please select at least one industry or enter other";
           isValid = false;
-        } else if (!role) {
-          message = "Please select your current role";
+        } else if (roles.length === 0) {
+          message = "Please select at least one role";
           isValid = false;
         } else if (!workStyle) {
           message = "Please select your work style";
@@ -283,7 +310,15 @@ document.addEventListener("DOMContentLoaded", () => {
           (cb) => cb.value
         );
         userData.otherIndustry = document.getElementById("otherIndustry")?.value.trim();
-        userData.role = document.getElementById("currentRole")?.value;
+        
+        // Updated: Multi-select roles
+        userData.roles = Array.from(document.querySelectorAll('input[name="role"]:checked')).map(
+          (cb) => cb.value
+        );
+        if (userData.roles.includes('other')) {
+          userData.otherRole = document.getElementById("otherRoleText")?.value.trim();
+        }
+        
         userData.workStyle = document.getElementById("workStyle")?.value;
         break;
 
@@ -410,13 +445,22 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
     }
 
-    // Role
-    if (userData.role) {
-      const roleText = document.querySelector(`#currentRole option[value="${userData.role}"]`)?.textContent;
+    // Roles (updated for multi-select)
+    if (userData.roles && userData.roles.length > 0) {
+      const roleLabels = {
+        'leader': 'Team Leader / Manager',
+        'investor': 'Investor',
+        'entrepreneur': 'Entrepreneur / Business Owner',
+        'professional': 'Professional Employee',
+        'consultant': 'Consultant / Advisor',
+        'other': userData.otherRole || 'Other'
+      };
+      
+      const rolesText = userData.roles.map(role => roleLabels[role] || role).join(", ");
       summaryHTML += `
                 <div class="summary-item">
                     <i class="fas fa-user"></i>
-                    <span><strong>Role:</strong> ${roleText}</span>
+                    <span><strong>Role(s):</strong> ${rolesText}</span>
                 </div>
             `;
     }

@@ -1,0 +1,328 @@
+/* =============================================================
+   GLOBAL LAYOUT STYLES - Shared across all pages
+   ============================================================= */
+
+/* Mobile Bottom Navigation */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #2c3e50;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  padding: 8px 0;
+}
+
+.mobile-nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  position: relative;
+  min-width: 60px;
+}
+
+.mobile-nav-item i {
+  font-size: 20px;
+  margin-bottom: 4px;
+  color: #00bcd4;
+}
+
+.mobile-nav-item span {
+  font-weight: 500;
+}
+
+.mobile-nav-item.active {
+  background: rgba(0, 188, 212, 0.15);
+  color: white;
+}
+
+.mobile-nav-item .badge-new {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  background: linear-gradient(135deg, var(--color-primary), #00acc1);
+  color: white;
+  padding: 1px 4px;
+  border-radius: 6px;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+/* AI Brain Dump Button Styles (Responsive) */
+.btn-ai-flow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, var(--color-primary), #00acc1);
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+  transition: all 0.2s ease;
+  margin-right: 16px;
+  white-space: nowrap;
+}
+
+.btn-ai-flow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-ai-flow .badge-new {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Header Actions Responsive */
+.header-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-filter-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* =============================================================
+   TABLET RESPONSIVE (768px - 1024px)
+   ============================================================= */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .btn-ai-flow {
+    padding: 8px 16px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .btn-ai-flow .badge-new {
+    font-size: 10px;
+    padding: 1px 6px;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+  .search-filter-wrapper {
+    gap: 8px;
+  }
+}
+
+/* =============================================================
+   MOBILE RESPONSIVE (< 768px)
+   ============================================================= */
+@media (max-width: 767px) {
+  /* Show mobile bottom nav */
+  .mobile-nav {
+    display: block;
+  }
+
+  /* Adjust content area for bottom nav */
+  .content-area {
+    padding-bottom: 80px !important;
+  }
+
+  /* Adjust standalone page containers */
+  .rep-logger-container,
+  .gap-annihilator-container,
+  .branding-container,
+  body {
+    padding-bottom: 80px !important;
+  }
+
+  /* Make header more compact */
+  .top-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+    padding: 12px !important;
+  }
+
+  .brain-dump-header .header-left {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+  }
+
+  /* Responsive AI Flow Button - Mobile */
+  .btn-ai-flow {
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 6px;
+    margin-right: 0;
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 140px;
+  }
+
+  .btn-ai-flow .btn-text {
+    display: inline;
+  }
+
+  .btn-ai-flow .badge-new {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+
+  /* Make search/filter stack nicely */
+  .search-filter-wrapper {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .search-bar {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .filter-dropdown {
+    flex-shrink: 0;
+  }
+
+  /* Adjust icon buttons */
+  .icon-btn {
+    padding: 6px;
+    font-size: 1.1rem;
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+/* Extra small mobile (< 375px) */
+@media (max-width: 374px) {
+  .btn-ai-flow {
+    padding: 6px 10px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .btn-ai-flow .btn-text {
+    display: none;
+  }
+
+  .btn-ai-flow::after {
+    content: 'AI Flow';
+    display: inline;
+    font-size: 11px;
+  }
+
+  .btn-ai-flow .badge-new {
+    position: static;
+    margin-left: 4px;
+  }
+
+  .mobile-nav-item {
+    min-width: 50px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .mobile-nav-item i {
+    font-size: 18px;
+  }
+}
+
+/* =============================================================
+   LAYOUT UTILITIES
+   ============================================================= */
+
+/* Standard Page Wrapper */
+.page-with-layout {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.page-with-layout .app-container {
+  display: flex;
+  flex: 1;
+}
+
+/* Content area with sidebar */
+.main-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Footer */
+.app-footer {
+  background: #2c3e50;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  text-align: center;
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-footer a {
+  color: #00bcd4;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .app-footer {
+    display: none; /* Hide footer on mobile to save space */
+  }
+}
+
+/* Ensure flow container works within layout */
+.brain-dump-flow-wrapper.with-layout {
+  padding: 0;
+  margin: 0;
+  min-height: auto;
+}
+
+.brain-dump-flow-wrapper.with-layout .brain-dump-flow-container {
+  max-width: 100%;
+  padding: 20px;
+}
+
+@media (max-width: 767px) {
+  .brain-dump-flow-wrapper.with-layout .brain-dump-flow-container {
+    padding: 16px;
+  }
+}

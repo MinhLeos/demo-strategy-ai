@@ -7,20 +7,39 @@
   <title>4MGI Strategy AI Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./design-system.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./layout.css">
+  <link rel="stylesheet" href="./notification-settings.css">
 </head>
 
 <body>
   <div class="app-container">
     <aside class="sidebar">
-      <div class="logo">4MGI</div>
+      <div class="logo">
+        <img src="./images/logo.jfif" alt="4MGI Logo">
+      </div>
       <nav class="main-nav">
         <a href="home.html" class="nav-item active"><i class="fas fa-home"></i><span>Dashboard</span></a>
-        <a href="brain-dump.html" class="nav-item"><i class="fas fa-brain"></i><span>Brain Dump</span></a>
-        <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Gap Annihilator</span></a>
+        <div class="nav-item-group">
+          <a href="brain-dump.html" class="nav-item"><i class="fas fa-brain"></i><span>Brain Dump</span></a>
+          <a href="brain-dump-flow.html" class="nav-item nav-item-sub" style="padding-left: 48px; font-size: 13px;">
+            <i class="fas fa-robot"></i><span>AI Flow</span>
+            <span style="
+              background: linear-gradient(135deg, var(--color-primary), #00acc1);
+              color: white;
+              padding: 2px 6px;
+              border-radius: 8px;
+              font-size: 10px;
+              margin-left: 8px;
+              font-weight: 700;
+            ">NEW</span>
+          </a>
+        </div>
+        <a href="gap-annihilator.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Gap Annihilator</span></a>
         <a href="#" class="nav-item"><i class="fas fa-tasks"></i><span>Tasks & Projects</span></a>
-        <a href="#" class="nav-item"><i class="fas fa-pen-nib"></i><span>Branding</span></a>
-        <a href="#" class="nav-item"><i class="fas fa-hourglass-half"></i><span>REP Log</span></a>
+        <a href="branding.html" class="nav-item"><i class="fas fa-pen-nib"></i><span>Branding</span></a>
+        <a href="rep-logger.html" class="nav-item"><i class="fas fa-chart-bar"></i><span>REP Log</span></a>
       </nav>
       <div class="user-profile">
         <i class="fas fa-user-circle"></i>
@@ -37,6 +56,7 @@
         <div class="header-actions">
           <button class="icon-btn"><i class="fas fa-search"></i></button>
           <button class="icon-btn"><i class="fas fa-bell notification-dot"></i></button>
+          <div id="notificationBellContainer"></div>
           <div class="user-avatar"><i class="fas fa-user"></i></div>
         </div>
       </header>
@@ -45,7 +65,13 @@
         <div class="card mit-card">
           <h2 class="card-title">
             <span class="title-text">
-              <span id="mitTitle">DAILY</span> MITs
+              <span id="mitTitle">DAILY</span>
+              <span class="mit-label">
+                Most Important Tasks (MITs)
+                <button class="info-btn" id="mitInfoBtn">
+                  <i class="fas fa-info-circle"></i>
+                </button>
+              </span>
             </span>
             <div class="title-actions">
               <div class="period-dropdown">
@@ -206,19 +232,20 @@
           <div class="card gap-cta-card">
             <h2 class="card-title">Gap Annihilator</h2>
             <p>Analyze gaps & create strategic actions.</p>
-            <button class="btn gold-btn">Analyze My Gaps <i class="fas fa-arrow-right"></i></button>
+            <button class="btn gold-btn" onclick="window.location.href='gap-annihilator.html'">Analyze My Gaps <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </section>
     </main>
   </div>
 
+  <!-- Bottom Navigation -->
   <nav class="bottom-nav">
     <a href="home.html" class="active"><i class="fas fa-home"></i>Home</a>
-    <a href="brain-dump.html"><i class="fas fa-brain"></i>Brain Dump</a>
-    <a href="#"><i class="fas fa-tasks"></i>Tasks</a>
-    <a href="#"><i class="fas fa-pen-nib"></i>Branding</a>
-    <a href="#"><i class="fas fa-user"></i>Profile</a>
+    <a href="brain-dump.html"><i class="fas fa-brain"></i>Dump</a>
+    <a href="gap-annihilator.html"><i class="fas fa-chart-line"></i>Gap</a>
+    <a href="rep-logger.html"><i class="fas fa-chart-bar"></i>REP</a>
+    <a href="branding.html"><i class="fas fa-pen-nib"></i>Brand</a>
   </nav>
 
   <!-- Floating Action Button -->
@@ -319,7 +346,160 @@
     </div>
   </div>
 
+  <!-- MIT Info Modal -->
+  <div class="info-modal" id="mitInfoModal">
+    <div class="info-modal-content">
+      <button class="info-modal-close" id="mitInfoClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="info-modal-header">
+        <i class="fas fa-star"></i>
+        <h3>What are MITs?</h3>
+      </div>
+      <div class="info-modal-body">
+        <p><strong>Most Important Tasks (MITs)</strong> are your top priority activities that will have the biggest impact on your goals.</p>
+        
+        <ul class="info-list">
+          <li><i class="fas fa-check"></i> Focus on 3-5 tasks per period</li>
+          <li><i class="fas fa-check"></i> Complete these before anything else</li>
+          <li><i class="fas fa-check"></i> Daily MITs reset each day</li>
+          <li><i class="fas fa-check"></i> AI helps prioritize based on your goals</li>
+        </ul>
+        
+        <p class="info-tip">
+          <i class="fas fa-lightbulb"></i>
+          <strong>Tip:</strong> If everything is important, nothing is. Choose wisely!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="./mit-notifications.js"></script>
+  <script src="./notification-settings.js"></script>
   <script src="./script.js"></script>
+  <script>
+    // Initialize notification bell in header
+    if (typeof NotificationBell !== 'undefined') {
+      NotificationBell.addToHeader('notificationBellContainer');
+    }
+
+    // Register service worker for push notifications
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(registration => {
+          console.log('Service Worker registered:', registration);
+        })
+        .catch(error => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
+
+    // Auto-request permission on first visit (optional - can be removed if too aggressive)
+    setTimeout(() => {
+      if (Notification.permission === 'default') {
+        const shouldAsk = !localStorage.getItem('notification-prompt-dismissed');
+        if (shouldAsk) {
+          showNotificationPrompt();
+        }
+      }
+    }, 3000); // Wait 3 seconds before showing prompt
+
+    // Show friendly permission prompt
+    function showNotificationPrompt() {
+      const promptDiv = document.createElement('div');
+      promptDiv.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        max-width: 400px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        z-index: 10000;
+        animation: slideInUp 0.4s ease-out;
+      `;
+      
+      promptDiv.innerHTML = `
+        <div style="margin-bottom: 12px;">
+          <strong style="font-size: 18px;">🔔 Stay on Track with MIT Reminders</strong>
+        </div>
+        <div style="margin-bottom: 16px; font-size: 14px; opacity: 0.95;">
+          Get 3 daily notifications to help you focus on your Most Important Tasks
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button id="enableNotificationsBtn" style="
+            flex: 1;
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+          ">Enable Notifications</button>
+          <button id="dismissPromptBtn" style="
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+          ">Maybe Later</button>
+        </div>
+      `;
+
+      document.body.appendChild(promptDiv);
+
+      // Handle enable button
+      document.getElementById('enableNotificationsBtn').addEventListener('click', async () => {
+        promptDiv.remove();
+        if (typeof MITNotifications !== 'undefined') {
+          await MITNotifications.requestPermission();
+          if (typeof NotificationBell !== 'undefined') {
+            NotificationBell.updateStatus();
+          }
+        }
+      });
+
+      // Handle dismiss button
+      document.getElementById('dismissPromptBtn').addEventListener('click', () => {
+        promptDiv.remove();
+        localStorage.setItem('notification-prompt-dismissed', Date.now().toString());
+        // Show again after 3 days
+        setTimeout(() => {
+          localStorage.removeItem('notification-prompt-dismissed');
+        }, 3 * 24 * 60 * 60 * 1000);
+      });
+    }
+  </script>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-nav">
+    <div class="mobile-nav-items">
+      <a href="home.html" class="mobile-nav-item active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="brain-dump.html" class="mobile-nav-item">
+        <i class="fas fa-brain"></i>
+        <span>Dump</span>
+      </a>
+      <a href="gap-annihilator.html" class="mobile-nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Gap</span>
+      </a>
+      <a href="rep-logger.html" class="mobile-nav-item">
+        <i class="fas fa-chart-bar"></i>
+        <span>REP</span>
+      </a>
+      <a href="branding.html" class="mobile-nav-item">
+        <i class="fas fa-pen-nib"></i>
+        <span>Brand</span>
+      </a>
+    </div>
+  </nav>
 </body>
 
 </html>

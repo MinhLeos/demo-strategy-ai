@@ -581,4 +581,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Expose openTaskModal globally for use in other parts of the app
   window.openTaskModal = openTaskModal;
+
+  // --- MIT Info Modal ---
+  const mitInfoBtn = document.getElementById("mitInfoBtn");
+  const mitInfoModal = document.getElementById("mitInfoModal");
+  const mitInfoClose = document.getElementById("mitInfoClose");
+
+  if (mitInfoBtn) {
+    mitInfoBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mitInfoModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    });
+  }
+
+  if (mitInfoClose) {
+    mitInfoClose.addEventListener("click", () => {
+      mitInfoModal.classList.remove("show");
+      document.body.style.overflow = "";
+    });
+  }
+
+  if (mitInfoModal) {
+    mitInfoModal.addEventListener("click", (e) => {
+      if (e.target === mitInfoModal) {
+        mitInfoModal.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+    });
+  }
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && mitInfoModal && mitInfoModal.classList.contains("show")) {
+      mitInfoModal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+  });
 });

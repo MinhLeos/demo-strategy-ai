@@ -7,6 +7,7 @@
   <title>Personalize Your Experience - 4MGI Strategy AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./design-system.css">
   <link rel="stylesheet" href="./onboarding.css">
 </head>
 
@@ -15,10 +16,7 @@
     <!-- Header -->
     <header class="onboarding-header">
       <div class="logo-section">
-        <div class="logo-icon">
-          <i class="fas fa-brain"></i>
-        </div>
-        <h1 class="logo-text">4MGI</h1>
+        <img src="./images/logo.jfif" alt="4MGI Logo" class="logo-image">
       </div>
 
       <div class="progress-section">
@@ -47,6 +45,21 @@
           </div>
           <h2 class="welcome-title">Welcome to 4MGI AI!</h2>
           <p class="welcome-subtitle">Let's personalize your experience</p>
+
+          <!-- Video Placeholder -->
+          <div class="video-container">
+            <div class="video-placeholder" id="videoPlaceholder">
+              <div class="play-icon">
+                <i class="fas fa-play"></i>
+              </div>
+              <p>Watch: How 4MGI AI Works</p>
+              <small style="color: rgba(255,255,255,0.7); margin-top: 8px;">2 minutes</small>
+            </div>
+            <small class="video-note">
+              <i class="fas fa-video"></i> 
+              Introduction video will be available soon
+            </small>
+          </div>
 
           <div class="welcome-content">
             <p>We'll ask you a few questions to customize 4MGI AI specifically for your needs. This helps us:</p>
@@ -152,16 +165,64 @@
             </div>
 
             <div class="question-group">
-              <label for="currentRole" class="question-label">What's your current role?</label>
-              <select id="currentRole" class="select-input">
-                <option value="">Select your role...</option>
-                <option value="leader">Team Leader / Manager</option>
-                <option value="investor">Investor</option>
-                <option value="entrepreneur">Entrepreneur / Business Owner</option>
-                <option value="professional">Professional Employee</option>
-                <option value="consultant">Consultant / Advisor</option>
-                <option value="other">Other</option>
-              </select>
+              <label class="question-label">
+                What's your current role?
+                <span class="label-hint">(Select all that apply)</span>
+              </label>
+              
+              <div class="role-checkbox-grid">
+                <label class="role-checkbox">
+                  <input type="checkbox" name="role" value="leader">
+                  <div class="role-checkbox-inner">
+                    <i class="fas fa-users-cog"></i>
+                    <span>Team Leader / Manager</span>
+                  </div>
+                </label>
+                
+                <label class="role-checkbox">
+                  <input type="checkbox" name="role" value="investor">
+                  <div class="role-checkbox-inner">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Investor</span>
+                  </div>
+                </label>
+                
+                <label class="role-checkbox">
+                  <input type="checkbox" name="role" value="entrepreneur">
+                  <div class="role-checkbox-inner">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Entrepreneur / Business Owner</span>
+                  </div>
+                </label>
+                
+                <label class="role-checkbox">
+                  <input type="checkbox" name="role" value="professional">
+                  <div class="role-checkbox-inner">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Professional Employee</span>
+                  </div>
+                </label>
+                
+                <label class="role-checkbox">
+                  <input type="checkbox" name="role" value="consultant">
+                  <div class="role-checkbox-inner">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Consultant / Advisor</span>
+                  </div>
+                </label>
+                
+                <label class="role-checkbox">
+                  <input type="checkbox" name="role" value="other">
+                  <div class="role-checkbox-inner">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>Other</span>
+                  </div>
+                </label>
+              </div>
+              
+              <div class="other-role-input" id="otherRoleInput" style="display: none;">
+                <input type="text" class="other-input" id="otherRoleText" placeholder="Please specify your role...">
+              </div>
             </div>
 
             <div class="question-group">
@@ -276,7 +337,7 @@
                 <label class="checkbox-item">
                   <input type="checkbox" name="challenges" value="discipline">
                   <span class="checkbox-custom"></span>
-                  <span>Maintaining discipline with MITs</span>
+                  <span>Maintaining discipline with Most Important Tasks (MITs)</span>
                 </label>
                 <label class="checkbox-item">
                   <input type="checkbox" name="challenges" value="tracking">
@@ -608,7 +669,7 @@
 
             <div class="question-group">
               <label for="dailyReminder" class="question-label">
-                When would you like daily MIT suggestions?
+                When would you like daily Most Important Tasks (MIT) suggestions?
               </label>
               <select id="dailyReminder" class="select-input">
                 <option value="">Select time...</option>
