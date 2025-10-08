@@ -289,6 +289,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isRecording) {
       stopRecording();
     }
+    
+    // Reset to initial view and show close button
+    document.getElementById('conversationView').style.display = 'none';
+    document.getElementById('initialInputView').style.display = 'flex';
+    if (modalClose) {
+      modalClose.style.display = 'block';
+    }
+    
     // Clear input after closing
     setTimeout(() => {
       brainDumpInput.value = "";
@@ -308,16 +316,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function processWithAI(text) {
-    // Show success message
-    showNotification("Brain Dump Captured", "Your thoughts have been captured. Creating task...");
+    // Switch to conversation view
+    document.getElementById('initialInputView').style.display = 'none';
+    document.getElementById('conversationView').style.display = 'flex';
 
-    // Close brain dump modal
-    closeModal();
+    // Hide modal close button when in conversation
+    if (modalClose) {
+      modalClose.style.display = 'none';
+    }
 
-    // Open task modal to create task from this content
-    setTimeout(() => {
-      openTaskModal(text, 'create');
-    }, 500);
+    // Initialize conversation
+    initializeConversation(text);
   }
 
   function showNotification(title, message) {
@@ -618,4 +627,364 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = "";
     }
   });
+
+  // --- AI Conversation Logic ---
+  
+  let conversationHistory = [];
+  let conversationRecognition = null;
+  let isConversationRecording = false;
+
+  // Initialize Speech Recognition for conversation
+  if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    conversationRecognition = new SpeechRecognition();
+    conversationRecognition.continuous = false;
+    conversationRecognition.interimResults = false;
+    conversationRecognition.lang = "en-US";
+
+    conversationRecognition.onstart = () => {
+      isConversationRecording = true;
+      const micBtn = document.getElementById('conversationMicBtn');
+      const voiceIndicator = document.getElementById('conversationVoiceIndicator');
+      if (micBtn) micBtn.classList.add('recording');
+      if (voiceIndicator) voiceIndicator.classList.add('active');
+    };
+
+    conversationRecognition.onend = () => {
+      isConversationRecording = false;
+      const micBtn = document.getElementById('conversationMicBtn');
+      const voiceIndicator = document.getElementById('conversationVoiceIndicator');
+      if (micBtn) micBtn.classList.remove('recording');
+      if (voiceIndicator) voiceIndicator.classList.remove('active');
+    };
+
+    conversationRecognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      const conversationInput = document.getElementById('conversationInput');
+      if (conversationInput) {
+        conversationInput.value += transcript + ' ';
+      }
+    };
+
+    conversationRecognition.onerror = (event) => {
+      console.error('Conversation speech recognition error:', event.error);
+      showNotification("Error", "Speech recognition failed. Please try again.");
+      isConversationRecording = false;
+      const micBtn = document.getElementById('conversationMicBtn');
+      if (micBtn) micBtn.classList.remove('recording');
+    };
+  }
+
+  // Conversation Mic Button
+  const conversationMicBtn = document.getElementById('conversationMicBtn');
+  if (conversationMicBtn) {
+    conversationMicBtn.addEventListener('click', () => {
+      if (conversationRecognition) {
+        if (isConversationRecording) {
+          conversationRecognition.stop();
+        } else {
+          conversationRecognition.start();
+        }
+      } else {
+        showNotification("Not Supported", "Speech recognition is not supported in your browser.");
+      }
+    });
+  }
+
+  // Send Message Button
+  const sendMessageBtn = document.getElementById('sendMessageBtn');
+  if (sendMessageBtn) {
+    sendMessageBtn.addEventListener('click', sendUserMessage);
+  }
+
+  // Enter key to send message
+  const conversationInput = document.getElementById('conversationInput');
+  if (conversationInput) {
+    conversationInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendUserMessage();
+      }
+    });
+  }
+
+  // Reset Conversation
+  const conversationReset = document.getElementById('conversationReset');
+  if (conversationReset) {
+    conversationReset.addEventListener('click', () => {
+      resetConversation();
+    });
+  }
+
+  // Create Task Button
+  const createTaskBtn = document.getElementById('createTaskBtn');
+  if (createTaskBtn) {
+    createTaskBtn.addEventListener('click', () => {
+      createTaskFromConversation();
+    });
+  }
+
+  function initializeConversation(initialText) {
+    conversationHistory = [];
+    
+    // Add user's initial message
+    addMessage('user', initialText);
+    
+    // Simulate AI response with questions
+    setTimeout(() => {
+      const aiResponse = analyzeInitialInput(initialText);
+      addMessage('ai', aiResponse);
+    }, 1000);
+  }
+
+  function analyzeInitialInput(text) {
+    // Simple AI logic to ask clarifying questions
+    const lowerText = text.toLowerCase();
+    
+    if (lowerText.length < 20) {
+      return "I'd love to help you create a task! Can you provide more details about what you want to accomplish?";
+    }
+    
+    // Check for time-related info
+    const hasDeadline = /deadline|due|by|before|until/i.test(text);
+    const hasPriority = /urgent|important|asap|critical|priority/i.test(text);
+    const hasCategory = /daily|weekly|monthly/i.test(text);
+    
+    let questions = [];
+    
+    if (!hasDeadline) {
+      questions.push("When do you need this completed?");
+    }
+    
+    if (!hasPriority) {
+      questions.push("How important is this task? (High priority, normal, or urgent?)");
+    }
+    
+    if (!hasCategory) {
+      questions.push("Is this a daily, weekly, or monthly task?");
+    }
+    
+    if (questions.length === 0) {
+      // All info present, ready to create task
+      document.getElementById('createTaskBtn').style.display = 'block';
+      return "Great! I have all the information I need. Here's what I understood:\n\n" +
+             `📝 Task: ${text}\n\n` +
+             "Click 'Create Task' to add this to your MITs, or let me know if you'd like to adjust anything.";
+    }
+    
+    return "Thanks for sharing that! To create the perfect task, I need a bit more information:\n\n" +
+           questions.map((q, i) => `${i + 1}. ${q}`).join('\n');
+  }
+
+  function addMessage(type, text) {
+    const messagesContainer = document.getElementById('conversationMessages');
+    if (!messagesContainer) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}`;
+    
+    const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    
+    messageDiv.innerHTML = `
+      <div class="message-avatar">
+        <i class="fas fa-${type === 'ai' ? 'robot' : 'user'}"></i>
+      </div>
+      <div class="message-content">
+        <div class="message-bubble">${text.replace(/\n/g, '<br>')}</div>
+        <div class="message-time">${time}</div>
+      </div>
+    `;
+    
+    messagesContainer.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    // Store in history
+    conversationHistory.push({ type, text, time });
+  }
+
+  function addTypingIndicator() {
+    const messagesContainer = document.getElementById('conversationMessages');
+    if (!messagesContainer) return;
+    
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message ai';
+    typingDiv.id = 'typingIndicator';
+    
+    typingDiv.innerHTML = `
+      <div class="message-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="message-content">
+        <div class="message-bubble">
+          <div class="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    messagesContainer.appendChild(typingDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    const typingIndicator = document.getElementById('typingIndicator');
+    if (typingIndicator) {
+      typingIndicator.remove();
+    }
+  }
+
+  function sendUserMessage() {
+    const input = document.getElementById('conversationInput');
+    if (!input) return;
+    
+    const message = input.value.trim();
+    if (!message) {
+      showNotification("Empty Message", "Please type a message or use voice input.");
+      return;
+    }
+    
+    // Add user message
+    addMessage('user', message);
+    
+    // Clear input
+    input.value = '';
+    
+    // Show typing indicator
+    addTypingIndicator();
+    
+    // Simulate AI processing
+    setTimeout(() => {
+      removeTypingIndicator();
+      const aiResponse = generateAIResponse(message);
+      addMessage('ai', aiResponse);
+    }, 1500);
+  }
+
+  function generateAIResponse(userMessage) {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    // Check if user provided all information
+    const hasDeadline = /today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday|next week|this week|\d+ day|\d+ hour/i.test(userMessage);
+    const hasPriority = /high|normal|low|urgent|important|critical/i.test(userMessage);
+    const hasCategory = /daily|weekly|monthly/i.test(userMessage);
+    
+    // Count how many questions we've asked
+    const aiMessages = conversationHistory.filter(m => m.type === 'ai');
+    const questionsAsked = aiMessages.length;
+    
+    if (questionsAsked >= 3 || (hasDeadline && hasPriority && hasCategory)) {
+      // Ready to create task
+      document.getElementById('createTaskBtn').style.display = 'block';
+      return "Perfect! I now have all the information needed:\n\n" +
+             "✅ Task details captured\n" +
+             "✅ Priority level set\n" +
+             "✅ Deadline noted\n" +
+             "✅ Category assigned\n\n" +
+             "Click 'Create Task' when you're ready, or let me know if you'd like to make any changes.";
+    }
+    
+    // Ask follow-up questions
+    if (!hasDeadline && questionsAsked === 1) {
+      return "Great! Now, when would you like to complete this task? (e.g., today, tomorrow, next week)";
+    }
+    
+    if (!hasPriority && questionsAsked === 2) {
+      return "Got it! How would you prioritize this task? (High priority, normal, or urgent?)";
+    }
+    
+    if (!hasCategory) {
+      return "Thanks! Is this something you need to do daily, weekly, or monthly?";
+    }
+    
+    // Default response
+    return "I understand. Could you provide more details to help me create the best task for you?";
+  }
+
+  function resetConversation() {
+    // Clear conversation
+    conversationHistory = [];
+    const messagesContainer = document.getElementById('conversationMessages');
+    if (messagesContainer) {
+      messagesContainer.innerHTML = '';
+    }
+    
+    // Hide create task button
+    document.getElementById('createTaskBtn').style.display = 'none';
+    
+    // Switch back to initial view
+    document.getElementById('conversationView').style.display = 'none';
+    document.getElementById('initialInputView').style.display = 'flex';
+    
+    // Show modal close button again
+    if (modalClose) {
+      modalClose.style.display = 'block';
+    }
+    
+    // Clear initial input
+    document.getElementById('brainDumpInput').value = '';
+    
+    showNotification("Conversation Reset", "Start a new brain dump!");
+  }
+
+  function createTaskFromConversation() {
+    // Extract task information from conversation
+    const userMessages = conversationHistory.filter(m => m.type === 'user').map(m => m.text);
+    const allText = userMessages.join(' ');
+    
+    // Close brain dump modal
+    closeModal();
+    
+    // Show processing notification
+    showNotification("Creating Task", "AI is structuring your task...");
+    
+    // Create task with AI-processed data
+    setTimeout(() => {
+      const taskData = extractTaskDataFromConversation(allText);
+      openTaskModal(taskData.name, 'create');
+      
+      // Pre-fill the task form
+      if (taskData.description) {
+        document.getElementById('taskDescription').value = taskData.description;
+      }
+      if (taskData.priority) {
+        document.getElementById('taskPriority').value = taskData.priority;
+      }
+      if (taskData.category) {
+        document.getElementById('taskCategory').value = taskData.category;
+      }
+      
+      showNotification("Task Structured", "Please review and save your task!");
+    }, 1000);
+  }
+
+  function extractTaskDataFromConversation(text) {
+    // Simple extraction logic (can be enhanced with real AI)
+    const lowerText = text.toLowerCase();
+    
+    let priority = 'normal';
+    if (/urgent|critical|asap/i.test(text)) {
+      priority = 'urgent';
+    } else if (/high|important/i.test(text)) {
+      priority = 'high';
+    }
+    
+    let category = 'daily';
+    if (/weekly|week/i.test(text)) {
+      category = 'weekly';
+    } else if (/monthly|month/i.test(text)) {
+      category = 'monthly';
+    }
+    
+    return {
+      name: text.substring(0, 80),
+      description: text,
+      priority: priority,
+      category: category
+    };
+  }
 });

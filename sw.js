@@ -2,9 +2,7 @@
 // Handles background notifications and click actions
 
 const CACHE_NAME = '4mgi-v3'; // Updated cache version
-const urlsToCache = [
-  '/'
-];
+const urlsToCache = [];
 
 // Install Service Worker
 self.addEventListener('install', (event) => {

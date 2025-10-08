@@ -614,6 +614,10 @@ const PersonalBranding = {
 
   // STEP 5: Goals
   renderStep5() {
+    // Reset goals array when entering this step
+    this.brandData.goals = [];
+    console.log('Step 5 rendered, goals reset to:', this.brandData.goals);
+    
     const container = document.getElementById('brandingContainer');
     container.innerHTML = `
       <div class="brand-step" data-step="5">
@@ -691,18 +695,49 @@ const PersonalBranding = {
   },
 
   toggleGoal(goalId) {
+    console.log('toggleGoal called with:', goalId);
+    
+    // Ensure goals is an array
+    if (!Array.isArray(this.brandData.goals)) {
+      console.warn('Goals was not an array, initializing...');
+      this.brandData.goals = [];
+    }
+    
+    console.log('Current goals:', this.brandData.goals);
+    console.log('Current goals length:', this.brandData.goals.length);
+    
     const goalCard = document.querySelector(`.goal-card[data-goal="${goalId}"]`);
     
+    if (!goalCard) {
+      console.error('Goal card not found:', goalId);
+      return;
+    }
+    
+    console.log('Goal card found, currently selected:', goalCard.classList.contains('selected'));
+    
     if (goalCard.classList.contains('selected')) {
+      // Deselect
       goalCard.classList.remove('selected');
       this.brandData.goals = this.brandData.goals.filter(g => g !== goalId);
+      console.log('Goal deselected, remaining goals:', this.brandData.goals);
     } else {
+      // Select
+      console.log('Attempting to select, current count:', this.brandData.goals.length);
+      
       if (this.brandData.goals.length >= 3) {
-        this.showNotification('You can only select up to 3 goals', 'warning');
+        console.log('Maximum goals reached (3), showing notification');
+        // Use global showNotification function from HTML
+        if (typeof window.showNotification === 'function') {
+          window.showNotification('Maximum Reached', 'You can only select up to 3 goals', 'warning');
+        } else {
+          alert('You can only select up to 3 goals');
+        }
         return;
       }
+      
       goalCard.classList.add('selected');
       this.brandData.goals.push(goalId);
+      console.log('Goal selected, current goals:', this.brandData.goals);
     }
 
     this.updateSelectedGoals();
@@ -1103,8 +1138,9 @@ const PersonalBranding = {
 
   // Utilities
   showNotification(message, type = 'info') {
-    if (typeof showNotification === 'function') {
-      showNotification('Personal Branding', message, type);
+    // Use global showNotification function from HTML
+    if (typeof window.showNotification === 'function') {
+      window.showNotification('Personal Branding', message, type);
     } else {
       alert(message);
     }

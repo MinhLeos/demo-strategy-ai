@@ -314,7 +314,7 @@
 }
 
 .example-card h3 i {
-  color: #f6e05e;
+  color: #f59e0b;
 }
 
 .example-content {
@@ -353,7 +353,7 @@
 }
 
 .example-row.highlight span {
-  color: #f6e05e;
+  color: #d97706;
   font-size: 18px;
   font-weight: 700;
 }
@@ -711,7 +711,7 @@ select.form-input {
 }
 
 .preview-text strong {
-  color: #f6e05e;
+  color: #ea580c;
   font-weight: 700;
 }
 
@@ -856,7 +856,7 @@ select.form-input {
 
 .bar-percentage {
   font-size: 16px;
-  color: #f6e05e;
+  color: #f59e0b;
   font-weight: 600;
 }
 
@@ -965,7 +965,7 @@ select.form-input {
 }
 
 .insight-body strong {
-  color: #f6e05e;
+  color: #dc2626;
   font-weight: 700;
 }
 
@@ -1042,7 +1042,7 @@ select.form-input {
 }
 
 .breakdown-item.highlight .breakdown-value {
-  color: #f6e05e;
+  color: #d97706;
   font-size: 20px;
 }
 
@@ -1060,13 +1060,13 @@ select.form-input {
 
 .strategy-intro p {
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #2d3748;
   margin: 0;
 }
 
 .strategy-intro strong {
-  color: #f6e05e;
+  color: #dc2626;
   font-weight: 700;
 }
 
@@ -1151,18 +1151,18 @@ select.form-input {
 }
 
 .result-label {
-  font-size: 13px;
-  color: #2d3748;
-  margin-bottom: 6px;
+  font-size: 14px;
   font-weight: 600;
+  color: #2d3748;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-bottom: 8px;
 }
 
 .result-value {
   font-size: 24px;
   font-weight: 700;
-  color: #f6e05e;
+  color: #dc2626;
 }
 
 /* ==================================================
@@ -1202,7 +1202,7 @@ select.form-input {
 .stage-number {
   font-size: 32px;
   font-weight: 800;
-  color: #f6e05e;
+  color: #f59e0b;
 }
 
 .stage-label {
@@ -1292,21 +1292,20 @@ select.form-input {
 }
 
 .priority-badge.high {
-  background: rgba(245, 101, 101, 0.2);
+  background: rgba(252, 129, 129, 0.2);
   color: #fc8181;
   border: 1px solid rgba(245, 101, 101, 0.3);
 }
 
 .priority-badge.medium {
-  background: rgba(246, 224, 94, 0.2);
-  color: #f6e05e;
-  border: 1px solid rgba(246, 224, 94, 0.3);
+  background: rgba(245, 158, 11, 0.2);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .priority-badge.low {
   background: rgba(72, 187, 120, 0.2);
   color: #48bb78;
-  border: 1px solid rgba(72, 187, 120, 0.3);
 }
 
 .action-content > p {
